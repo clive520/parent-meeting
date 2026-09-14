@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>航向未來的起點｜鹿陽國小 六年一班 班親會專屬網站</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="臺中市沙鹿區鹿陽國民小學 115 學年度六年一班班親會專屬家長指南。導師：高志賢老師。">
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span>🏫 鹿陽國小</span>
+      <span class="nav-badge">六年一班</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#slides">簡報瀏覽</a></li>
+      <li><a href="#philosophy">教育心法</a></li>
+      <li><a href="#sel">SEL 與閱讀</a></li>
+      <li><a href="reading-ai.html" style="color: var(--secondary); font-weight: 700;">🤖 AI 閱讀認證</a></li>
+      <li><a href="#regulations">請假與健康</a></li>
+      <li><a href="#finance">班親會組織</a></li>
+      <li><a href="#contact">親師連線</a></li>
+    </ul>
+    <a href="tel:0963159896" class="btn-emergency">
+      <span>📞</span>
+      <span>緊急專線</span>
+    </a>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero Header -->
+    <header class="hero">
+      <span class="hero-tag">🌱 115 學年度 第一學期 班親會</span>
+      <h1 class="hero-title">航向未來的起點</h1>
+      <p class="hero-subtitle">臺中市沙鹿區鹿陽國民小學 六年一班｜導師：高志賢 老師</p>
+
+      <div style="margin-bottom: 2.2rem;">
+        <a href="presentation.html" target="_blank" style="display: inline-flex; align-items: center; gap: 0.6rem; background: linear-gradient(135deg, #E88D67 0%, #D67247 100%); color: #fff; text-decoration: none; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 800; font-size: 1.15rem; box-shadow: 0 6px 20px rgba(232, 141, 103, 0.45); transition: transform 0.2s;">
+          <span>🖥️</span>
+          <span>開啟「全螢幕網頁簡報模式」（支援鍵盤左右鍵）</span>
+        </a>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-pillar">
+          <div class="pillar-icon">心</div>
+          <div class="pillar-content">
+            <h4>先相信，再理解</h4>
+            <p>絕不有罪推定，探究孩子行為背後的心理動機與情感需求。</p>
+          </div>
+        </div>
+        <div class="hero-pillar">
+          <div class="pillar-icon">翼</div>
+          <div class="pillar-content">
+            <h4>3C 科技是翅膀</h4>
+            <p>擁抱數位工具為學習助力，引導孩子從被動滑機變為主動解題。</p>
+          </div>
+        </div>
+        <div class="hero-pillar">
+          <div class="pillar-icon">伴</div>
+          <div class="pillar-content">
+            <h4>親師攜手同行</h4>
+            <p>共同把關六年級畢業專案與財務，做孩子最堅實溫暖的神隊友。</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Interactive Slide Viewer Section -->
+    <section id="slides" class="section">
+      <div class="section-header">
+        <span class="section-tag">Presentation Slides</span>
+        <h2 class="section-title">📊 完整簡報線上即時看</h2>
+      </div>
+
+      <div class="slide-viewer-container">
+        <div class="slide-frame">
+          <img id="slide-viewer-img" src="assets/slides/01-cover.png" alt="班親會投影片">
+        </div>
+        <div class="viewer-controls">
+          <button id="slide-prev" class="btn-nav">◀ 上一頁</button>
+          <span id="slide-counter" class="slide-counter">1 / 24</span>
+          <button id="slide-next" class="btn-nav">下一頁 ▶</button>
+        </div>
+        <div class="slide-caption-box">
+          <strong id="slide-viewer-title" style="color: var(--secondary); font-size: 1.1rem;">Page 01｜航向未來的起點</strong>
+          <p id="slide-viewer-note" style="margin-top: 0.4rem; color: #E2E8F0;">導師開場歡迎：小學六年的最後一哩路，歡迎各位家長走進六年一班，一同陪伴孩子展開新旅程。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="section">
+      <div class="section-header">
+        <span class="section-tag">Teacher Philosophy</span>
+        <h2 class="section-title">🌟 高老師的育人理念與陪伴心法</h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="philosophy-card">
+          <span class="card-badge badge-orange">陪伴心法 01</span>
+          <h3 class="card-title">先相信，絕不有罪推定</h3>
+          <p>高年級孩子面對人際碰撞時，事情往往不是非黑即白。高老師堅持「先接納情緒、給予安全感」，不急於定罪。唯有當孩子感到被信任，心門才會敞開，我們才能引導他學會自我反省與負責。</p>
+        </div>
+        <div class="philosophy-card">
+          <span class="card-badge badge-blue">陪伴心法 02</span>
+          <h3 class="card-title">穿透表象，探究底層需求</h3>
+          <p>孩子的脫序或衝動往往只是冰山一角。我們要看見的是藏在水面下的渴望——是課業挫折、同儕眼光、還是尋求肯定？深究心理動機，才能真正根除問題，陪伴孩子平穩度過青春期拔節。</p>
+        </div>
+        <div class="philosophy-card">
+          <span class="card-badge badge-green">陪伴心法 03</span>
+          <h3 class="card-title">3C 是翅膀，不是猛獸</h3>
+          <p>科技是未來的基本競爭力，全面封殺只會讓孩子私下偷用。高老師引導孩子把手機平板當作課業查證、科學探究與生活解題的「強大外接大腦」，親師步調一致約定時限，培養自律數位素養。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEL & Reading Section -->
+    <section id="sel" class="section">
+      <div class="section-header">
+        <span class="section-tag">Guidance & Curriculum</span>
+        <h2 class="section-title">❤️ 社會情緒學習 (SEL) × 愛閱家庭計畫</h2>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">【輔導室推動】高年級社會情緒學習（SEL）</h3>
+        
+        <div class="quote-box">
+          <p>「孩子需要的，不只是成功，而是面對不成功的能力。」</p>
+          <span>「求助不是我很弱，而是我知道什麼時候需要藉助別人的智慧與力量。」</span>
+        </div>
+
+        <p style="margin-bottom: 1rem;">高年級孩子面臨課業加深與人際敏感，當情緒緊繃或遇挫折時，我們引導孩子落實應對五步驟：</p>
+        <div class="sel-steps">
+          <div class="step-item">1. 看見壓力</div>
+          <span class="step-arrow">➔</span>
+          <div class="step-item">2. 說出壓力</div>
+          <span class="step-arrow">➔</span>
+          <div class="step-item">3. 暫停一下（深呼吸×喝水）</div>
+          <span class="step-arrow">➔</span>
+          <div class="step-item">4. 拆解成下一小步</div>
+          <span class="step-arrow">➔</span>
+          <div class="step-item">5. 尋求親師支持</div>
+        </div>
+      </div>
+
+      <!-- 601 班專屬 AI 閱讀認證創新系統 -->
+      <div class="card" style="border: 2px solid var(--secondary); background: linear-gradient(180deg, #FFFFFF 0%, #FFFDF9 100%); box-shadow: var(--shadow-md);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 0.8rem;">
+          <span class="card-badge badge-orange" style="font-size: 0.9rem; padding: 0.35rem 0.9rem;">✨ 601 班專屬教學創新・Google AI Studio 研發</span>
+          <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: bold;">導師 高志賢 老師 親自研發</span>
+        </div>
+        <h3 class="card-title" style="color: var(--primary); font-size: 1.45rem;">【自主學習深耕】AI 雲端閱讀理解認證平台</h3>
+        <p style="margin-bottom: 1.2rem; line-height: 1.8; color: var(--text-dark);">
+          為培養學生深入理解與獨立思考的自主閱讀習慣，高老師特別運用 <strong>Google AI Studio</strong> 開發了專屬的雲端閱讀認證平台。
+          老師針對高年級學習主題設定精選好文，學生閱讀後<strong>用自己的話回答理解式提問</strong>（非死記硬背或抄答案），由 AI 即時給予啟發回饋與認證！
+        </p>
+
+        <div class="grid-3" style="margin-bottom: 1.5rem;">
+          <div style="background: #FDFBF7; padding: 1rem 1.2rem; border-radius: var(--radius-md); border: 1px solid var(--card-border);">
+            <strong style="color: var(--primary); display: block; margin-bottom: 0.3rem;">📖 1. 導師選文</strong>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">緊扣單元與生活時事，篇篇精彩</span>
+          </div>
+          <div style="background: #FDFBF7; padding: 1rem 1.2rem; border-radius: var(--radius-md); border: 1px solid var(--card-border);">
+            <strong style="color: var(--secondary); display: block; margin-bottom: 0.3rem;">✍️ 2. 理解作答</strong>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">無選擇題，鼓勵以文字抒發真實想法</span>
+          </div>
+          <div style="background: #FDFBF7; padding: 1rem 1.2rem; border-radius: var(--radius-md); border: 1px solid var(--card-border);">
+            <strong style="color: var(--accent); display: block; margin-bottom: 0.3rem;">🤖 3. 智慧回饋</strong>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">AI 溫暖點評與認證，啟發批判思維</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+          <a href="reading-ai.html" style="display: inline-flex; align-items: center; gap: 0.5rem; background: var(--primary); color: #fff; text-decoration: none; padding: 0.75rem 1.8rem; border-radius: 50px; font-weight: bold; font-size: 1rem; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(44, 94, 138, 0.3);">
+            <span>📘</span>
+            <span>查看系統詳細介紹與陪伴指南</span>
+          </a>
+          <a href="https://aistudio.google.com/apps/aad78bb7-a309-4442-9345-66ae97383dd6?fullscreenApplet=true&showPreview=true&showAssistant=true" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; background: var(--secondary); color: #fff; text-decoration: none; padding: 0.75rem 1.8rem; border-radius: 50px; font-weight: bold; font-size: 1rem; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(232, 141, 103, 0.35);">
+            <span>🚀</span>
+            <span>直接前往 AI 閱讀認證平台</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 601 班專屬《冒險齒輪》少兒長篇原創小說庫 -->
+      <div class="card" style="border: 2px solid var(--accent); background: linear-gradient(180deg, #FFFFFF 0%, #F5FBF7 100%); box-shadow: var(--shadow-md);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 0.8rem;">
+          <span class="card-badge badge-green" style="font-size: 0.9rem; padding: 0.35rem 0.9rem;">⚙️ 原創長篇閱讀・克服長文恐懼</span>
+          <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: bold;">導師 高志賢 老師 親自開發構建</span>
+        </div>
+        <h3 class="card-title" style="color: var(--primary); font-size: 1.45rem;">【長篇閱讀深耕】《冒險齒輪》少兒原創小說庫</h3>
+        <p style="margin-bottom: 1.2rem; line-height: 1.8; color: var(--text-dark);">
+          針對許多學生習慣閱讀漫畫、零碎短文而缺乏長文耐性的痛點，高老師親自打造了《冒險齒輪》少兒科幻解謎小說平台。
+          透過緊湊精彩的情節吸引孩子靜心長讀，更特別搭載<strong>中英即時對照呈現</strong>（照顧英語佳但中文吃力的孩子）與<strong>智慧語音朗讀有聲書</strong>功能，打破語言門檻，點燃每一位孩子的閱讀熱情！
+        </p>
+
+        <div class="grid-3" style="margin-bottom: 1.5rem;">
+          <div style="background: #FFF; padding: 1rem 1.2rem; border-radius: var(--radius-md); border: 1px solid var(--card-border);">
+            <strong style="color: var(--secondary); display: block; margin-bottom: 0.3rem;">📚 1. 原創解謎長篇</strong>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">少兒專屬科幻小說，循序漸進養成靜心閱讀耐性</span>
+          </div>
+          <div style="background: #FFF; padding: 1rem 1.2rem; border-radius: var(--radius-md); border: 1px solid var(--card-border);">
+            <strong style="color: var(--primary); display: block; margin-bottom: 0.3rem;">🌐 2. 中英即時對照</strong>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">雙語並列即時切換，兼顧不同語言背景與多元孩子</span>
+          </div>
+          <div style="background: #FFF; padding: 1rem 1.2rem; border-radius: var(--radius-md); border: 1px solid var(--card-border);">
+            <strong style="color: var(--accent); display: block; margin-bottom: 0.3rem;">🔊 3. 智慧語音朗讀</strong>
+            <span style="font-size: 0.9rem; color: var(--text-muted);">多感官有聲書隨點隨聽，附人物檔案與解謎成就</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+          <a href="https://clive520.github.io/gearnovel/" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #fff; text-decoration: none; padding: 0.75rem 1.8rem; border-radius: 50px; font-weight: bold; font-size: 1rem; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(88, 164, 126, 0.35);">
+            <span>⚙️</span>
+            <span>開啟《冒險齒輪》小說庫在線閱讀</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title" style="color: var(--accent);">【教務處推動】115 年度臺中市「愛閱家庭」雲端智慧存摺</h3>
+        <p style="margin-bottom: 1rem;">自主學習由閱讀扎根。今年度愛閱家庭全面數位化，透過雲端智慧存款簿記錄親子共讀時光：</p>
+        
+        <ul class="check-list">
+          <li><strong>核心精神</strong>：i 閱（身體力行）+ 愛閱（熱愛閱讀）+ 愛閱（家庭之愛）。</li>
+          <li><strong>共讀目標</strong>：期許家長每天撥出 20 分鐘與孩子共讀優質書籍。</li>
+          <li><strong>登錄網站</strong>：<a href="https://lovereading.tc.edu.tw/" target="_blank" style="color: var(--primary); font-weight: bold;">https://lovereading.tc.edu.tw/</a></li>
+          <li><strong>家長線上申請期</strong>：<strong>115 年 09 月 16 日 ～ 115 年 10 月 25 日</strong>（需以 Email 註冊，待教務處審核）。</li>
+          <li><strong>正式登錄開始</strong>：<strong>115 年 11 月 01 日起</strong>，每月共讀滿 20 天以上即過關！</li>
+          <li><strong>達人獎勵</strong>：持續達標者將獲頒臺中市政府教育局「閱讀達人獎狀」與「愛閱家庭證書」。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Health & Attendance Regulations -->
+    <section id="regulations" class="section">
+      <div class="section-header">
+        <span class="section-tag">Health & Regulations</span>
+        <h2 class="section-title">🏥 校園防疫守則與出缺席請假須知</h2>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">【學務處衛教】上呼吸道防護四大日常守則</h3>
+        <div class="grid-3" style="margin-top: 1rem;">
+          <div class="philosophy-card">
+            <span class="card-badge badge-blue">守則 01</span>
+            <h4 style="margin-bottom: 0.5rem;">手部清潔做好做滿</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">洗手七字訣「內外夾弓大立腕」。進食前、如廁後及擤鼻涕後務必用肥皂徹底搓洗並擦乾。</p>
+          </div>
+          <div class="philosophy-card">
+            <span class="card-badge badge-orange">守則 02</span>
+            <h4 style="margin-bottom: 0.5rem;">咳嗽禮節要做到</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">咳嗽或噴嚏時以手肘或衛生紙遮掩口鼻，用過衛生紙即刻丟棄。有呼吸道症狀請全程佩戴口罩。</p>
+          </div>
+          <div class="philosophy-card">
+            <span class="card-badge badge-green">守則 03</span>
+            <h4 style="margin-bottom: 0.5rem;">教室通風・生病不硬撐</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">適時開窗換氣，個人餐具水壺不共用。若出現發燒或明顯症狀，請落實「生病不上課」在家休養。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">【學務處行政】學生請假規範與校園安全須知</h3>
+        <ul class="check-list">
+          <li><strong>請假通報時限</strong>：若孩子當天因病或事故不克到校，請於<strong>上午 8:30 前</strong>以 LINE 通知導師，或撥打學校總機 <code>04-26567968 轉 720 或 724</code> 代為登記。</li>
+          <li><strong>請假手續辦理</strong>：事假須事前填單辦妥；病假、喪假得於事後 3 日內補辦手續。病假連續 3 日以上須檢附醫療就醫證明。</li>
+          <li><strong>審核核准權限</strong>：請假 2 日以內由級任導師核可；3 日以上未滿 5 日呈送學務主任核准；5 日以上陳報校長親自核定。</li>
+          <li><strong>臨時外出安全管制</strong>：學生因故需臨時提早離校外出者，家長應事先與導師聯繫，由導師通知警衛室，經警衛確認身分後始交由家長帶回。</li>
+          <li><strong>差勤重要法規</strong>：國小屬國民義務教育，不得申請休學、停課或退學；無故曠課達 3 日以上者，學校依法通報教育局中輟追蹤輔導。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Class Autonomy & Finance -->
+    <section id="finance" class="section">
+      <div class="section-header">
+        <span class="section-tag">Class Autonomy</span>
+        <h2 class="section-title">🎒 六年級專案活動與班親會組織</h2>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">六年級三大成長盛事</h3>
+        <p style="margin-bottom: 1.2rem;">國小最後一年，我們將陪伴孩子共同完成三項凝聚一生回憶的重大專案：</p>
+        <div class="grid-3">
+          <div class="philosophy-card">
+            <span class="card-badge badge-orange">專案 01</span>
+            <h4 style="margin-bottom: 0.4rem;">專屬班服製作</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">孩子全員參與票選設計，凝聚 601 專屬榮譽感，於重大校園活動齊心展現。</p>
+          </div>
+          <div class="philosophy-card">
+            <span class="card-badge badge-blue">專案 02</span>
+            <h4 style="margin-bottom: 0.4rem;">畢業旅行啟程</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">最璀璨的小學探險之旅，培養團體互助與自主照顧，深化一輩子的同窗情誼。</p>
+          </div>
+          <div class="philosophy-card">
+            <span class="card-badge badge-green">專案 03</span>
+            <h4 style="margin-bottom: 0.4rem;">畢業紀念冊編撰</h4>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">定格孩子六年底蘊的燦爛笑容，為童年時光畫下最溫暖圓滿的句點。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">班親幹部推選與三大財務透明保證</h3>
+        <p>因應畢業旅行、班服與各項班級專款支出，我們推選熱心家長擔任<strong>班親會「會長」</strong>（代表發聲、親師溝通橋樑）與<strong>「總務」</strong>（專款保管、單據建檔、定期報表）。</p>
+        
+        <div class="highlight-box">
+          <h5>⚖️ 高老師與班親會的三大財務透明保證：</h5>
+          <p style="font-size: 0.95rem; color: var(--text-dark);">
+            <strong>1. 專款專用</strong>：非經班親會審核決議不任意動支。<br>
+            <strong>2. 帳目透明</strong>：所有單據發票完整保存，定期於班級群組公開明細。<br>
+            <strong>3. 雙人覆核</strong>：總務記帳、會長監核，讓老師專注教學、家長百分之百安心。
+          </p>
+        </div>
+
+        <div style="margin-top: 1.5rem; padding: 1rem 1.4rem; background: #FDF7EA; border-radius: var(--radius-md); border: 1px solid rgba(217, 142, 38, 0.4);">
+          <h4 style="color: var(--gold); margin-bottom: 0.3rem;">💐 誠摯致謝：本班家長委員會委員</h4>
+          <p style="font-size: 0.95rem; color: var(--text-dark);">衷心感謝本班熱心家長承擔學校家長委員一職！感謝委員無私奉獻，作為班級與學校的堅實溝通紐帶，為鹿陽全體學童爭取豐沛的教育資源與照護！</p>
+        </div>
+
+        <div style="margin-top: 1.5rem; padding: 1.2rem 1.4rem; background: #F0F9F4; border-radius: var(--radius-md); border: 1px solid rgba(88, 164, 126, 0.4);">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <h4 style="color: var(--secondary); margin: 0; font-size: 1.15rem;">🤝 115 學年度鹿陽國小愛心志工隊熱忱招募</h4>
+            <span style="background: var(--secondary); color: #fff; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: 700;">歡迎熱心加入</span>
+          </div>
+          <p style="font-size: 0.95rem; color: var(--text-dark); margin-bottom: 0.8rem; font-style: italic;">
+            「因為有您，孩子的安全更有保障；因為有您，孩子的笑容更加燦爛。」
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.8rem; font-size: 0.9rem;">
+            <div style="background: #fff; padding: 0.8rem 1rem; border-radius: 8px; border-left: 4px solid var(--primary);">
+              <strong style="color: var(--primary);">🚦 交通組：維護學童交通安全</strong>
+              <div style="margin-top: 0.3rem; color: var(--text-dark); line-height: 1.5;">
+                • 早上：07:10 - 07:50<br>
+                • 中午：12:45 - 13:10<br>
+                • 下午：15:45 - 16:10<br>
+                <small style="color: var(--text-muted);">（週一至週五，家長可彈性勾選單一時段）</small>
+              </div>
+            </div>
+            <div style="background: #fff; padding: 0.8rem 1rem; border-radius: 8px; border-left: 4px solid var(--secondary);">
+              <strong style="color: var(--secondary);">📚 圖書組：書籍整理與借還推廣</strong>
+              <div style="margin-top: 0.3rem; color: var(--text-dark); line-height: 1.5;">
+                • 時段：週一至週五 08:30 - 11:30<br>
+                • 說明：先登記意願，待學校活動中心完工驗收後開始排班值勤。
+              </div>
+            </div>
+          </div>
+          <p style="margin-top: 0.8rem; font-size: 0.85rem; color: var(--text-muted);">
+            📝 <strong>報名方式</strong>：請填寫紙本通知單回條交給孩子帶來，或直接向高志賢老師登記報名！
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-tag">Questions & Answers</span>
+        <h2 class="section-title">💬 家長常見疑問與解答（FAQ）</h2>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>Q1. 孩子升上小六後，課業難度變深，如果跟不上該怎麼辦？</span>
+          <span class="accordion-icon">+</span>
+        </div>
+        <div class="accordion-content">
+          <p>請家長先別著急責怪分數。高年級課業著重在「觀念理解」與「思意思考」。老師在校會依據孩子作答進行診斷，也鼓勵孩子運用 SEL 精神「主動求助不是軟弱」。遇到特定科目障礙，請透過 LINE 與老師溝通，我們會一同規劃小步漸進的補強策略。</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>Q2. 關於 3C 使用，如果孩子以「做作業查資料」為由長時間盯螢幕，家長該如何拿捏？</span>
+          <span class="accordion-icon">+</span>
+        </div>
+        <div class="accordion-content">
+          <p>建議家長與孩子共同約定「目標導向」原則：在客廳等公共空間使用、明確設定本次查資料的時限（如 20 分鐘）、查完後請孩子用 1 分鐘「口頭分享他查到了什麼」。把科技使用從被動沉迷轉為主動表達，同時保護視力。</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>Q3. 畢業旅行的大約時間與費用何時會公布？</span>
+          <span class="accordion-icon">+</span>
+        </div>
+        <div class="accordion-content">
+          <p>學校學務處目前正進行行程規劃與招標評選，確定具體日期與詳細收費後，會正式發放家長意願調查表與活動通知書。所有相關款項將由班級總務與班親會共同把關核銷，確保每項流程公開透明。</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>Q4. 孩子在學校如果和同學產生誤會或摩擦，老師會怎麼處理？</span>
+          <span class="accordion-icon">+</span>
+        </div>
+        <div class="accordion-content">
+          <p>高老師的原則是「先接納情緒、絕不有罪推定」。老師會分別與雙方孩子平視懇談，先還原事實經過與背後心理感受，引導孩子看見彼此視角，練習理性道歉、和解與承擔責任。老師亦會在當天主動聯繫雙方家長說明，避免資訊落差引發誤解。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Emergency Section -->
+    <section id="contact" class="section">
+      <div class="contact-banner">
+        <span style="background: rgba(255,255,255,0.2); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600;">隨時連線・親師攜手</span>
+        <h3 style="margin-top: 1rem;">孩子有狀況，請第一時間與老師聯繫</h3>
+        <p>我們坦誠對話、互相合作，讓小問題在第一時間得到最好的照顧與引導。</p>
+
+        <div class="contact-methods">
+          <a href="tel:0963159896" class="contact-btn phone">
+            <span>📞</span>
+            <span>緊急直撥：0963-159-896（高老師）</span>
+          </a>
+          <a href="#" class="contact-btn line" onclick="alert('歡迎利用平日聯絡簿或班級 LINE 群組留言，老師於課間空檔或放學後將詳細回覆！'); return false;">
+            <span>💬</span>
+            <span>LINE 官方班級聯繫</span>
+          </a>
+        </div>
+        
+        <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #CBD5E0;">
+          學校總機：04-26567968（請假專線轉分機 720 或 724）｜臺中市沙鹿區鹿陽國民小學
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>臺中市沙鹿區鹿陽國民小學 六年一班 班親會專屬網站</p>
+    <p style="margin-top: 0.4rem;">導師：高志賢 老師 ｜ 陪伴孩子平穩自信地航向未來 ✨</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

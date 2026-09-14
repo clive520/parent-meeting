@@ -1,0 +1,10 @@
+﻿# Large media and archive files
+*.zip
+*.mp4
+*.mov
+宣導資料/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.agent/

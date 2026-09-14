@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 雲端閱讀理解認證平台｜鹿陽國小 六年一班 高志賢老師教學創新專區</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="臺中市沙鹿區鹿陽國民小學 六年一班專屬 AI 雲端閱讀理解認證系統。由導師高志賢老師運用 Google AI Studio 開發，引導孩子以理解代替死記，培養自主閱讀與思考表達力。">
+  <style>
+    /* 閱讀認證專屬特化樣式 */
+    .ai-badge {
+      background: linear-gradient(135deg, #2C5E8A 0%, #4A7CA8 100%);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 12px rgba(44, 94, 138, 0.25);
+    }
+    
+    .cta-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .btn-ai-launch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, #E88D67 0%, #D67247 100%);
+      color: #fff !important;
+      text-decoration: none;
+      padding: 1rem 2.4rem;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      box-shadow: 0 8px 24px rgba(232, 141, 103, 0.45);
+      transition: all 0.25s ease;
+    }
+
+    .btn-ai-launch:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(232, 141, 103, 0.55);
+    }
+
+    .btn-secondary-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #fff;
+      color: var(--primary) !important;
+      border: 2px solid var(--primary);
+      text-decoration: none;
+      padding: 0.95rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary-link:hover {
+      background: var(--primary);
+      color: #fff !important;
+      transform: translateY(-2px);
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.8rem;
+      margin: 1.8rem 0;
+    }
+
+    .comp-card {
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border: 1px solid var(--card-border);
+      position: relative;
+    }
+
+    .comp-traditional {
+      background: #FFFBFB;
+      border-color: #F8D7DA;
+    }
+
+    .comp-ai {
+      background: #F3F9F6;
+      border: 2px solid var(--accent);
+      box-shadow: var(--shadow-md);
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .step-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--card-border);
+      padding: 2rem 1.6rem;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .step-num-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 1.2rem;
+    }
+
+    .parent-tip-box {
+      background: linear-gradient(135deg, rgba(232, 141, 103, 0.08) 0%, rgba(88, 164, 126, 0.08) 100%);
+      border-left: 5px solid var(--secondary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 1.4rem 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span>🏫 鹿陽國小</span>
+      <span class="nav-badge">六年一班</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">🏠 班親會首頁</a></li>
+      <li><a href="presentation.html" target="_blank">🖥️ 全螢幕簡報</a></li>
+      <li><a href="#concept">開發理念</a></li>
+      <li><a href="#workflow">三步流程</a></li>
+      <li><a href="#parenting">陪伴心法</a></li>
+      <li><a href="#launch">立即體驗</a></li>
+    </ul>
+    <a href="tel:0963159896" class="btn-emergency">
+      <span>📞</span>
+      <span>導師專線</span>
+    </a>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero Header -->
+    <header class="hero" style="padding-top: 2.5rem; margin-bottom: 2.5rem;">
+      <div class="ai-badge">
+        <span>✨</span>
+        <span>Google AI Studio 實作・高志賢老師親自研發</span>
+      </div>
+      <h1 class="hero-title" style="font-size: 2.8rem; margin-bottom: 1rem;">AI 雲端閱讀理解認證平台</h1>
+      <p class="hero-subtitle" style="max-width: 800px; margin: 0 auto 1.5rem; font-size: 1.25rem;">
+        告別死背與抄答案，以理解為核心｜結合前瞻生成式 AI 技術，打造專屬於 601 孩子的深度思考閱讀樂園
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="cta-container">
+        <a href="https://aistudio.google.com/apps/aad78bb7-a309-4442-9345-66ae97383dd6?fullscreenApplet=true&showPreview=true&showAssistant=true" target="_blank" class="btn-ai-launch">
+          <span>🚀</span>
+          <span>點我直接開啟「AI 閱讀認證平台」</span>
+        </a>
+        <a href="index.html#sel" class="btn-secondary-link">
+          <span>🔙</span>
+          <span>返回班親會主網頁</span>
+        </a>
+      </div>
+
+      <!-- Quick Highlights Bar -->
+      <div class="hero-card" style="margin-top: 2.5rem;">
+        <div class="hero-pillar">
+          <div class="pillar-icon" style="background: var(--accent-light); color: var(--accent);">讀</div>
+          <div class="pillar-content">
+            <h4>導師精選文本</h4>
+            <p>配合六年級學習主題、生活時事與經典文學，由高老師親自挑選適合高年級思辨的好文章。</p>
+          </div>
+        </div>
+        <div class="hero-pillar">
+          <div class="pillar-icon" style="background: var(--secondary-light); color: var(--secondary);">思</div>
+          <div class="pillar-content">
+            <h4>理解代替死記</h4>
+            <p>無制式選擇題！學生必須讀懂文章脈絡，用「自己的話」打字回答核心問題，鍛鍊論述表達。</p>
+          </div>
+        </div>
+        <div class="hero-pillar">
+          <div class="pillar-icon" style="background: #EBF3FA; color: var(--primary);">析</div>
+          <div class="pillar-content">
+            <h4>AI 智能即時反饋</h4>
+            <p>運用 Google AI Studio 強大語意理解，即時給予孩子溫暖評價、肯定思考亮點並啟發延伸反思。</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Concept Section -->
+    <section id="concept" class="section">
+      <div class="section-header">
+        <span class="section-tag">Educational Philosophy</span>
+        <h2 class="section-title">💡 為什麼我們要為孩子打造 AI 閱讀認證？</h2>
+      </div>
+
+      <div class="card">
+        <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 1.5rem;">
+          在六年級的成長拔節期，閱讀是孩子<strong>自主學習</strong>的最底層能力。然而，傳統閱讀測驗往往讓孩子養成「只在文章裡找關鍵字抄寫」的應試習慣，難以轉化為真正的思考深度與寫作表達力。
+        </p>
+        <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 1.5rem;">
+          為了解決這個教學痛點，高老師特別透過 <strong>Google AI Studio</strong> 設計了這套專屬的「雲端閱讀認證系統」，將 3C 科技化為孩子學習的<strong>隱形翅膀</strong>，讓閱讀回歸「理解與思辨」的本質。
+        </p>
+
+        <!-- Comparison Cards -->
+        <div class="comparison-grid">
+          <div class="comp-card comp-traditional">
+            <h3 style="color: #C53030; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>❌</span> 傳統閱讀測驗模式
+            </h3>
+            <ul style="list-style: none; padding-left: 0; color: #4A5568; line-height: 1.9;">
+              <li>✕ <strong>死背記憶</strong>：考題多為枝微末節的細節死背。</li>
+              <li>✕ <strong>關鍵字配對</strong>：孩子不用讀懂全文，只在文章中比對文字抄答案。</li>
+              <li>✕ <strong>標準答案限制</strong>：單一對錯限制了孩子的想像力與獨立觀點。</li>
+              <li>✕ <strong>反饋延遲</strong>：寫完考卷往往隔天才知道結果，喪失當下好奇心。</li>
+            </ul>
+          </div>
+
+          <div class="comp-card comp-ai">
+            <h3 style="color: var(--accent); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>✅</span> 601 班專屬 AI 閱讀理解系統
+            </h3>
+            <ul style="list-style: none; padding-left: 0; color: var(--text-dark); line-height: 1.9; font-weight: 500;">
+              <li>✓ <strong>深度理解導向</strong>：提問直指文章核心主旨、因果推論與價值觀。</li>
+              <li>✓ <strong>用自己的話表達</strong>：鼓勵孩子轉化文本，鍛鍊組織思考與文字組織力。</li>
+              <li>✓ <strong>多元開放包容</strong>：AI 能夠理解多元切入視角，接納不同思考深度的答案。</li>
+              <li>✓ <strong>秒級溫暖反饋</strong>：作答完畢立即獲得 AI 助教的肯定、點評與進一步啟發！</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="workflow" class="section">
+      <div class="section-header">
+        <span class="section-tag">Student Workflow</span>
+        <h2 class="section-title">🐾 學生三步操作流程</h2>
+      </div>
+
+      <div class="flow-steps">
+        <div class="step-card">
+          <div class="step-num-badge" style="background: var(--primary);">01</div>
+          <h3 style="color: var(--primary); margin-bottom: 0.6rem; font-size: 1.3rem;">第一步：靜心沉浸閱讀</h3>
+          <p style="color: var(--text-muted); line-height: 1.7;">
+            開啟系統後，學生先仔細閱讀老師為本期挑選的專屬文章。鼓勵孩子不求快，靜下心體會作者的用意與情節轉折。
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num-badge" style="background: var(--secondary);">02</div>
+          <h3 style="color: var(--secondary); margin-bottom: 0.6rem; font-size: 1.3rem;">第二步：思考並用自己的話回答</h3>
+          <p style="color: var(--text-muted); line-height: 1.7;">
+            系統將依據文章拋出理解式問題。孩子在對話框中輸入自己的見解。不必追求華麗詞藻，只要能清楚表達「自己的理解」即可！
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num-badge" style="background: var(--accent);">03</div>
+          <h3 style="color: var(--accent); margin-bottom: 0.6rem; font-size: 1.3rem;">第三步：獲得 AI 智能點評與認證</h3>
+          <p style="color: var(--text-muted); line-height: 1.7;">
+            AI 助教會即時分析孩子的思維亮點，給予具體的賞識與鼓舞，指出理解精準處，完成該篇閱讀認證，成就感滿分！
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parenting Tips -->
+    <section id="parenting" class="section">
+      <div class="section-header">
+        <span class="section-tag">Family Partnership</span>
+        <h2 class="section-title">👨‍👩‍👧 親師攜手：家長在家的三大溫暖心法</h2>
+      </div>
+
+      <div class="card">
+        <div class="parent-tip-box">
+          <h4 style="color: var(--secondary); font-size: 1.2rem; margin-bottom: 0.4rem;">心法一：聊聊感受，重於追問答案</h4>
+          <p style="color: var(--text-dark); line-height: 1.7;">
+            孩子讀完文章後，您可以問一句：「這篇文章哪一部分最吸引你？」或「如果是你，你會怎麼做？」引導孩子先在口頭上梳理思考，再進入系統作答。
+          </p>
+        </div>
+
+        <div class="parent-tip-box" style="border-left-color: var(--accent);">
+          <h4 style="color: var(--accent); font-size: 1.2rem; margin-bottom: 0.4rem;">心法二：重在理解與敢言，不糾結錯別字</h4>
+          <p style="color: var(--text-dark); line-height: 1.7;">
+            高年級孩子表達時最怕被大人挑毛病。請多鼓勵孩子「勇於把想法打出來」，只要意思到了、邏輯通順，就是非常成功的閱讀理解表現！
+          </p>
+        </div>
+
+        <div class="parent-tip-box" style="border-left-color: var(--primary);">
+          <h4 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 0.4rem;">心法三：善用數位工具，共築數位素養</h4>
+          <p style="color: var(--text-dark); line-height: 1.7;">
+            讓孩子看見「3C 科技不是只能打電動，更能成為啟發心智的學習夥伴」。這正是高老師推動「科技是翅膀而非猛獸」的最佳實踐！
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Launch / Access Section -->
+    <section id="launch" class="section">
+      <div class="contact-banner" style="background: linear-gradient(135deg, #2C5E8A 0%, #1D4363 100%);">
+        <h3 style="font-size: 2.2rem; margin-bottom: 1rem;">開啟孩子的深度思辨閱讀之旅</h3>
+        <p style="font-size: 1.15rem; max-width: 700px; margin: 0 auto 2rem; color: #E2E8F0;">
+          不論使用平板、筆電或手機，點擊下方按鈕即可立即開啟由高老師開發的 AI 閱讀認證系統。
+        </p>
+
+        <div class="contact-methods" style="margin-bottom: 2rem;">
+          <a href="https://aistudio.google.com/apps/aad78bb7-a309-4442-9345-66ae97383dd6?fullscreenApplet=true&showPreview=true&showAssistant=true" target="_blank" class="btn-ai-launch" style="background: linear-gradient(135deg, #58A47E 0%, #3D815E 100%); font-size: 1.3rem; padding: 1.1rem 3rem;">
+            <span>🌐</span>
+            <span>點我前往：AI 雲端閱讀理解認證系統</span>
+          </a>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="index.html" style="color: #E2E8F0; text-decoration: none; font-size: 1rem; border-bottom: 1px dotted #CBD5E0; padding-bottom: 2px;">🏠 返回班親會主網站</a>
+          <span style="color: rgba(255,255,255,0.4);">|</span>
+          <a href="presentation.html" target="_blank" style="color: #E2E8F0; text-decoration: none; font-size: 1rem; border-bottom: 1px dotted #CBD5E0; padding-bottom: 2px;">🖥️ 開啟全螢幕網頁簡報模式</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>臺中市沙鹿區鹿陽國民小學 六年一班 115 學年度第一學期 班親會專屬數位指南</p>
+    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #A0AEC0;">
+      系統開發：導師 高志賢 老師（電話：0963-159-896）｜技術核心：Google AI Studio 語意理解架構
+    </p>
+  </footer>
+
+</body>
+</html>

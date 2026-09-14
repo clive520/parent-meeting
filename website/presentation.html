@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>全螢幕簡報播放｜鹿陽國小 六年一班 班親會</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #0F172A;
+      font-family: "Microsoft JhengHei", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #F8FAFC;
+    }
+
+    /* Main Slide Stage */
+    .stage {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+    }
+
+    .slide-wrapper {
+      position: relative;
+      max-width: 100vw;
+      max-height: 100vh;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    /* Floating Header HUD */
+    .hud-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0) 100%);
+      z-index: 50;
+      transition: opacity 0.3s ease;
+    }
+
+    .hud-title {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #E2E8F0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .hud-badge {
+      background: #2C5E8A;
+      color: #fff;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .hud-tools {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .hud-btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #F8FAFC;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .hud-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .hud-btn.active {
+      background: #E88D67;
+      border-color: #E88D67;
+      color: #fff;
+    }
+
+    .page-counter {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #CBD5E1;
+      padding: 0 0.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    /* Left / Right Click Nav Zones */
+    .click-zone {
+      position: absolute;
+      top: 15%;
+      bottom: 15%;
+      width: 15%;
+      z-index: 30;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .click-zone.left {
+      left: 0;
+    }
+
+    .click-zone.right {
+      right: 0;
+    }
+
+    .click-zone:hover {
+      opacity: 1;
+    }
+
+    .nav-arrow-pill {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      font-size: 1.8rem;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Bottom Progress Bar */
+    .hud-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      transition: opacity 0.3s ease;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2C5E8A, #E88D67);
+      width: 7.14%;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 10px rgba(232, 141, 103, 0.8);
+    }
+
+    /* Speaker Notes Drawer */
+    .notes-drawer {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      width: min(880px, 92vw);
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(232, 141, 103, 0.4);
+      border-radius: 16px;
+      padding: 1.2rem 1.6rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(12px);
+      z-index: 60;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .notes-drawer.open {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .notes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 0.4rem;
+    }
+
+    .notes-tag {
+      color: #E88D67;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .notes-body {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: #E2E8F0;
+    }
+
+    .notes-body strong {
+      color: #FED7AA;
+    }
+
+    /* Auto-hide HUD on idle */
+    .autohide {
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    /* Shortcut Toast */
+    .toast {
+      position: absolute;
+      top: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(44, 94, 138, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      padding: 0.6rem 1.4rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      z-index: 100;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      opacity: 0;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stage" id="stage">
+    <!-- Header HUD -->
+    <header class="hud-header" id="hud-header">
+      <div class="hud-title">
+        <span class="hud-badge">鹿陽國小 601</span>
+        <span>班親會全螢幕簡報模式</span>
+      </div>
+
+      <div class="hud-tools">
+        <span class="page-counter" id="page-counter">01 / 20</span>
+        <button class="hud-btn" id="btn-notes" title="切換講者備註 (鍵盤快捷鍵: N)">
+          <span>📝</span>
+          <span>講稿提示 (N)</span>
+        </button>
+        <button class="hud-btn" id="btn-fullscreen" title="全螢幕切換 (鍵盤快捷鍵: F)">
+          <span id="fs-icon">⛶</span>
+          <span id="fs-text">全螢幕 (F)</span>
+        </button>
+        <button class="hud-btn" onclick="window.open('reading-ai.html', '_blank')" title="開啟 AI 閱讀理解認證系統介紹">
+          <span>🤖</span>
+          <span>AI 閱讀系統</span>
+        </button>
+        <button class="hud-btn" onclick="location.href='index.html'" title="返回班親會網站">
+          <span>✕</span>
+          <span>離開</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Slide Canvas -->
+    <div class="slide-wrapper">
+      <img id="slide-img" class="slide-img" src="assets/slides/01-cover.png" alt="投影片">
+    </div>
+
+    <!-- Interactive Left/Right Click Zones -->
+    <div class="click-zone left" id="zone-prev" title="上一頁 (← / PageUp)">
+      <div class="nav-arrow-pill">‹</div>
+    </div>
+    <div class="click-zone right" id="zone-next" title="下一頁 (→ / Space / Enter)">
+      <div class="nav-arrow-pill">›</div>
+    </div>
+
+    <!-- Bottom Progress Track -->
+    <footer class="hud-footer" id="hud-footer">
+      <div class="progress-track" id="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </footer>
+
+    <!-- Speaker Notes Overlay Drawer -->
+    <div class="notes-drawer" id="notes-drawer">
+      <div class="notes-header">
+        <span class="notes-tag" id="notes-tag">SPEAKER NOTE 講者重點備忘</span>
+        <span style="font-size: 0.8rem; color: #94A3B8;">按 N 鍵可收合</span>
+      </div>
+      <div class="notes-body" id="notes-body">
+        載入中...
+      </div>
+    </div>
+
+    <!-- Quick Toast Notification -->
+    <div class="toast" id="toast">按 ← → 鍵切換，按 F 進入全螢幕</div>
+  </div>
+
+  <script>
+    const slidesData = [
+      {
+        src: "assets/slides/01-cover.png",
+        title: "Page 01｜航向未來的起點（開場封面）",
+        notes: "<strong>【開場引導】</strong> 播放輔導室暖場影片後正式開場。歡迎家長撥冗前來，感謝六年來的陪伴。小學最後一年，是孩子展開翅膀、邁向國中新旅程的關鍵起點。"
+      },
+      {
+        src: "assets/slides/02-welcome.png",
+        title: "Page 02｜走進青春期：孩子的拔節成長",
+        notes: "<strong>【班級觀察】</strong> 全班常規已步入常軌，學習態度認真。六年級孩子自主意識萌芽，開始有獨立思考與小大人自尊，這不是叛逆，而是練習長大的必經過程，我們用包容平視接納。"
+      },
+      {
+        src: "assets/slides/03-teacher.png",
+        title: "Page 03｜高老師的陪伴哲學：先相信，再理解",
+        notes: "<strong>【導師理念】</strong> 絕不有罪推定！衝突發生時先給予孩子全然的安全感與傾聽。穿透脫序行為表象，深究背後的焦慮、挫折與心理需求，陪伴孩子學會承擔責任與修正。"
+      },
+      {
+        src: "assets/slides/04-sel.png",
+        title: "Page 04｜SEL 心靈金句：培養挫折復原力",
+        notes: "<strong>【輔導室宣導】</strong> 金句引導：「孩子需要的，不只是成功，而是面對不成功的能力。」「求助不是我很弱，而是懂得適時借力。」給予孩子敢於跌倒、坦然求助的勇氣。"
+      },
+      {
+        src: "assets/slides/05-sel-action.png",
+        title: "Page 05｜SEL 行動引導：情緒調節三步驟",
+        notes: "<strong>【親師共育】</strong> 情緒引導三步驟：① 看見與說出情緒（平靜描述不評價）、② 暫停一下深呼吸（按下衝動暫停鍵）、③ 拆解困難找資源（具體列出解決選項）。"
+      },
+      {
+        src: "assets/slides/06-learning.png",
+        title: "Page 06｜自主學習力：從被動監督到自主規劃",
+        notes: "<strong>【教務處推動】</strong> 引導六年級孩子建立三大自律支柱：自主訂定每日學習進度、建立自律檢核反思習慣、學會時間分配與輕重緩急，為國中生涯打下最紮實自主基礎。"
+      },
+      {
+        src: "assets/slides/07-reading-policy.png",
+        title: "Page 07｜愛閱家庭推動：臺中市雲端智慧存摺",
+        notes: "<strong>【教務處推動】</strong> 臺中市「愛閱家庭」雲端智慧存摺系統：申請期程 115.09.16~10.25 線上登錄，11.01 正式起算。鼓勵家長每週共讀 3 次、每次 20 分鐘，共創書香家庭。"
+      },
+      {
+        src: "assets/slides/08-reading-ai.png",
+        title: "Page 08｜【自主閱讀深耕】AI 雲端閱讀理解認證平台",
+        notes: "<strong>【高老師研發創新】</strong> 高老師親自運用 Google AI Studio 開發之 601 專屬閱讀認證系統！依教學單元設定精選文章，學生以理解回答問題，告別死記硬背與抄答案，由 AI 即時給予賞識引導與認證。"
+      },
+      {
+        src: "assets/slides/09-gear-novel.png",
+        title: "Page 09｜【長篇閱讀深耕】《冒險齒輪》少兒原創小說庫",
+        notes: "<strong>【克服長文恐懼】</strong> 高老師親自開發的《冒險齒輪》原創少兒科幻小說電子書庫！結合中英即時對照、智慧語音朗讀有聲書，引導習慣看漫畫短文的孩子靜下心閱讀長篇文章，雙語沉浸無障礙。"
+      },
+      {
+        src: "assets/slides/10-digital-wings.png",
+        title: "Page 10｜3C 學習哲學：科技是翅膀而非猛獸",
+        notes: "<strong>【高老師理念】</strong> 3C 不是猛獸，而是數位原住民的關鍵羽翼！全面鼓勵善用 3C 於知識查證、解題輔助、專案協作與自主探索，正向賦能更勝全面防堵。"
+      },
+      {
+        src: "assets/slides/11-digital-discipline.png",
+        title: "Page 11｜數位自律公約：親師一致的健康使用準則",
+        notes: "<strong>【親師守則】</strong> 達成親師生三方公約：約定每日屏幕使用時限（如 30-40 分鐘）、睡前 1 小時手機不進臥房、專注課業時不切換娛樂視窗，親師步調一致。"
+      },
+      {
+        src: "assets/slides/12-health-hygiene.png",
+        title: "Page 12｜校園衛教守則：正確洗手與呼吸道禮節",
+        notes: "<strong>【衛教宣導】</strong> 守護校園衛生：落實「內、外、夾、弓、大、立、腕」洗手七字訣，每次搓洗 40 秒；咳嗽噴嚏時以手肘或面紙遮掩口鼻，廢棄口罩確實入垃圾桶。"
+      },
+      {
+        src: "assets/slides/13-health-safety.png",
+        title: "Page 13｜校園健康守護：環境通風與發燒休養",
+        notes: "<strong>【健康中心叮嚀】</strong> 教室保持對角開窗 15 公分以上確保對流；體溫 ≥37.5℃ 發燒或具傳染性症狀時請假在家休養，退燒 24 小時後始得返校，守護全班同儕健康。"
+      },
+      {
+        src: "assets/slides/14-attendance-rules.png",
+        title: "Page 14｜請假規範指南：8:30 前通報管道與流程",
+        notes: "<strong>【學務處差勤】</strong> 每日上午 8:30 前完成請假通報（LINE 導師或致電學校總機 04-26567968 轉 720/724）。2日內由導師核准，3日以上由學務處/校長核定。"
+      },
+      {
+        src: "assets/slides/15-attendance-security.png",
+        title: "Page 15｜校園安全管理：外出嚴格審核與中輟通報",
+        notes: "<strong>【學務處安全】</strong> 臨時外出安全管制：家長親至警衛室登記換證領回，杜絕學童自行離校；未請假達 3 日依教育部規定啟動中輟通報，親師攜手滴水不漏守護安全。"
+      },
+      {
+        src: "assets/slides/16-graduation.png",
+        title: "Page 16｜六年級專屬盛事：班服、畢旅與畢業紀念冊",
+        notes: "<strong>【小學里程碑】</strong> 六年級專屬三大盛事：專屬班服設計凝聚 601 榮譽感、畢業旅行兩天一夜深度冒險拓展視野、畢業紀念冊編撰定格童年純真笑顏。"
+      },
+      {
+        src: "assets/slides/17-election.png",
+        title: "Page 17｜班級自治與推選：班親會長與總務幹部",
+        notes: "<strong>【班親幹部】</strong> 現場推選兩大核心幹部：「班親會長」（串聯親師溝通、反映家長心聲）與「總務幹部」（保管專案經費、確實記帳與採購核銷），熱烈歡迎家長自告奮勇！"
+      },
+      {
+        src: "assets/slides/18-finance-pledge.png",
+        title: "Page 18｜班級財務透明：高老師的三大透明承諾",
+        notes: "<strong>【導師承諾】</strong> 財務透明三大保證：① 專款專用（畢旅/班服專款獨立設帳）、② 帳目透明（定期公開收支明細表）、③ 雙人覆核（總務記帳、導師與會長共同覆核審驗）。"
+      },
+      {
+        src: "assets/slides/19-committee.png",
+        title: "Page 19｜誠摯致謝：114學年度本班家長委員會委員",
+        notes: "<strong>【致謝後盾】</strong> 公開感謝本班已確認產生的家長委員會委員！感謝委員熱心承擔重任，搭起學校與班級的堅固橋樑，積極為孩子爭取豐沛的教育資源與照護。"
+      },
+      {
+        src: "assets/slides/20-volunteer.png",
+        title: "Page 20｜熱忱招募：115學年度愛心志工隊（交通組／圖書組）",
+        notes: "<strong>【學校志工招募】</strong> 轉達學校愛心志工隊招募：「因為有您，孩子的安全更有保障；因為有您，孩子的笑容更加燦爛。」分為<strong>【交通組】</strong>（晨間 07:10-07:50、中午 12:45-13:10、下午 15:45-16:10，可單選時段）與<strong>【圖書組】</strong>（上午 08:30-11:30，待活動中心完工後排班）。家長可填寫紙本回條交給孩子，或直接向高老師登記報名！"
+      },
+      {
+        src: "assets/slides/21-communication.png",
+        title: "Page 21｜親師即時連線：LINE 常態溝通與緊急專線",
+        notes: "<strong>【聯絡管道】</strong> 平常學習常規請多利用 LINE 留言，老師課後詳細回覆；<strong>遇到突發急症或緊急事故，請直接撥打導師手機：0963-159-896</strong>，第一時間連線處理。"
+      },
+      {
+        src: "assets/slides/22-message.png",
+        title: "Page 22｜給家長的一封信：並肩走一段平穩堅定的路",
+        notes: "<strong>【深情結語】</strong> 「我們不替孩子走完人生的路，但在他跌倒時，陪伴他勇敢站起來。」感謝家長六年來的悉心灌溉，未來一年親師繼續並肩做神隊友，給孩子展翅的底氣。"
+      },
+      {
+        src: "assets/slides/23-qa.png",
+        title: "Page 23｜感謝聆聽與交流時間（Q&A）",
+        notes: "<strong>【現場交流】</strong> 現場自由提問與意見分享、推選 601 班親會長與總務、討論畢業專案、掃描填寫回饋表單。祝各位闔家平安、孩子學習順利！"
+      },
+      {
+        src: "assets/slides/24-reminder.png",
+        title: "Page 24｜現場重要提醒：今日親師會三大必辦事項",
+        notes: "<strong>【現場三大必辦提醒】</strong> 離席前請協助確認完成三大要事：① <strong>家長出席簽到</strong>（確認簽到表簽名與領取資料）、② <strong>會長及總務推選</strong>（確認 601 班親會長與總務幹部熱心人選）、③ <strong>愛心志工意願登記</strong>（有意願加入交通組或圖書組之熱心家長，現場登記或繳回回條）。感謝大家，返家請多加小心注意安全！"
+      }
+    ];
+
+    let currentIdx = 0;
+    let isNotesOpen = false;
+    let idleTimer = null;
+
+    const slideImg = document.getElementById("slide-img");
+    const pageCounter = document.getElementById("page-counter");
+    const progressFill = document.getElementById("progress-fill");
+    const notesDrawer = document.getElementById("notes-drawer");
+    const notesTag = document.getElementById("notes-tag");
+    const notesBody = document.getElementById("notes-body");
+    const btnNotes = document.getElementById("btn-notes");
+    const btnFs = document.getElementById("btn-fullscreen");
+    const fsIcon = document.getElementById("fs-icon");
+    const fsText = document.getElementById("fs-text");
+    const hudHeader = document.getElementById("hud-header");
+    const hudFooter = document.getElementById("hud-footer");
+    const zonePrev = document.getElementById("zone-prev");
+    const zoneNext = document.getElementById("zone-next");
+    const toast = document.getElementById("toast");
+
+    function renderSlide(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= slidesData.length) idx = slidesData.length - 1;
+      currentIdx = idx;
+
+      slideImg.style.opacity = "0.7";
+      setTimeout(() => {
+        slideImg.src = slidesData[currentIdx].src;
+        slideImg.style.opacity = "1";
+      }, 100);
+
+      const numStr = String(currentIdx + 1).padStart(2, "0");
+      pageCounter.textContent = `${numStr} / ${String(slidesData.length).padStart(2, "0")}`;
+      const pct = ((currentIdx + 1) / slidesData.length) * 100;
+      progressFill.style.width = `${pct}%`;
+
+      notesTag.textContent = slidesData[currentIdx].title;
+      notesBody.innerHTML = slidesData[currentIdx].notes;
+    }
+
+    function prevSlide() {
+      if (currentIdx > 0) renderSlide(currentIdx - 1);
+    }
+
+    function nextSlide() {
+      if (currentIdx < slidesData.length - 1) renderSlide(currentIdx + 1);
+    }
+
+    function toggleNotes() {
+      isNotesOpen = !isNotesOpen;
+      notesDrawer.classList.toggle("open", isNotesOpen);
+      btnNotes.classList.toggle("active", isNotesOpen);
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.warn("Fullscreen request error:", err);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    document.addEventListener("fullscreenchange", () => {
+      if (document.fullscreenElement) {
+        fsIcon.textContent = "🗗";
+        fsText.textContent = "視窗化 (F)";
+      } else {
+        fsIcon.textContent = "⛶";
+        fsText.textContent = "全螢幕 (F)";
+      }
+    });
+
+    // Keyboard Shortcuts
+    document.addEventListener("keydown", (e) => {
+      resetIdleTimer();
+      switch (e.key) {
+        case "ArrowRight":
+        case "PageDown":
+        case " ":
+        case "Enter":
+          e.preventDefault();
+          nextSlide();
+          break;
+        case "ArrowLeft":
+        case "PageUp":
+        case "Backspace":
+          e.preventDefault();
+          prevSlide();
+          break;
+        case "f":
+        case "F":
+          e.preventDefault();
+          toggleFullscreen();
+          break;
+        case "n":
+        case "N":
+          e.preventDefault();
+          toggleNotes();
+          break;
+        case "Home":
+          e.preventDefault();
+          renderSlide(0);
+          break;
+        case "End":
+          e.preventDefault();
+          renderSlide(slidesData.length - 1);
+          break;
+      }
+    });
+
+    // Click Zones
+    zonePrev.addEventListener("click", () => {
+      prevSlide();
+      resetIdleTimer();
+    });
+
+    zoneNext.addEventListener("click", () => {
+      nextSlide();
+      resetIdleTimer();
+    });
+
+    btnNotes.addEventListener("click", toggleNotes);
+    btnFs.addEventListener("click", toggleFullscreen);
+
+    // Click progress bar to jump
+    document.getElementById("progress-track").addEventListener("click", (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickRatio = (e.clientX - rect.left) / rect.width;
+      const targetIdx = Math.floor(clickRatio * slidesData.length);
+      renderSlide(targetIdx);
+    });
+
+    // Idle HUD fade
+    function resetIdleTimer() {
+      hudHeader.classList.remove("autohide");
+      hudFooter.classList.remove("autohide");
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        if (!isNotesOpen) {
+          hudHeader.classList.add("autohide");
+          hudFooter.classList.add("autohide");
+        }
+      }, 3500);
+    }
+
+    document.addEventListener("mousemove", resetIdleTimer);
+
+    // Touch Swipe Support
+    let touchStartX = 0;
+    document.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    document.addEventListener("touchend", (e) => {
+      const touchEndX = e.changedTouches[0].screenX;
+      const diffX = touchEndX - touchStartX;
+      if (Math.abs(diffX) > 50) {
+        if (diffX < 0) nextSlide();
+        else prevSlide();
+      }
+    }, false);
+
+    // Initial load
+    renderSlide(0);
+    resetIdleTimer();
+
+    // Show quick toast on startup
+    setTimeout(() => {
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 4000);
+    }, 800);
+  </script>
+</body>
+</html>
