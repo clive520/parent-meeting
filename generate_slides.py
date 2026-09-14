@@ -697,58 +697,62 @@ def gen_slide_16():
     draw = ImageDraw.Draw(base)
     draw_header_nav(draw, "16", "倒數計時的小學時光：六年級專屬盛事", "小學最後一年，攜手打造孩子一輩子珍藏的青春印記")
     
-    cards = [
-        ("專屬班服製作", ORANGE, "凝聚 601 榮譽感", [
-            "全班孩子共同參與發想票選",
-            "打造屬於六年一班專屬識別",
-            "在校慶與畢業活動共同穿著",
-            "成為小學最驕傲珍貴紀念物"
-        ]),
-        ("畢業旅行啟程", NAVY, "青春最璀璨的冒險", [
-            "學習團體生活自主獨立能力",
-            "走出教室，拓展眼界同窗情",
-            "深化同學之間的珍貴夥伴情",
-            "安全第一，細緻規劃每項活動"
-        ]),
-        ("畢業紀念冊編撰", GREEN, "定格六年底蘊的美好", [
-            "記錄校園生活歡笑成長汗水",
-            "每位孩子都有專屬燦爛笑顏",
-            "寫下真摯祝福與對未來期許",
-            "留給長大後翻閱的溫暖禮物"
-        ])
-    ]
-    
-    cw = 540
-    ch = 580
-    cx_start = 80
-    cy = 260
-    for i, (title, color, sub, bullets) in enumerate(cards):
-        x = cx_start + i * (cw + 45)
-        base = draw_card(base, [x, cy, x + cw, cy + ch], bg_color=(255, 255, 255, 248), border_color=color, radius=20)
-        d = ImageDraw.Draw(base)
-        draw_badge(d, sub, x + 35, cy + 32, bg_color=color, font_size=26)
-        d.text((x + 35, cy + 102), title, font=get_font(True, 42), fill=color)
-        d.line([(x + 35, cy + 172), (x + cw - 35, cy + 172)], fill=(226, 232, 240, 255), width=4)
-        
-        by = cy + 210
-        for b in bullets:
-            draw_dot(d, x + 45, by + 16, color=color, r=8)
-            d.text((x + 70, by), b, font=get_font(False, 30), fill=TEXT_DARK)
-            by += 88
-
-    base = draw_card(base, [80, 865, SLIDE_W - 80, 965], bg_color=(235, 244, 250, 255), border_color=(44, 94, 138, 255), radius=16)
+    # 2 Big Cards: 畢業旅行 & 畢業紀念冊
+    # Left Card: 畢業旅行啟程
+    base = draw_card(base, [80, 260, 920, 830], bg_color=(255, 255, 255, 248), border_color=(44, 94, 138, 255), radius=22)
     d = ImageDraw.Draw(base)
-    bw, bh = draw_badge(d, "高老師的心願", 120, 888, bg_color=NAVY, font_size=26)
-    d.text((120 + bw + 30, 892), "讓每一位 601 的孩子，都能帶著被滿滿愛意包裹的溫暖記憶畢業！", font=get_font(True, 32), fill=NAVY)
+    draw_badge(d, "青春最璀璨的冒險", 130, 305, bg_color=NAVY, font_size=28)
+    d.text((130, 375), "畢業旅行啟程", font=get_font(True, 46), fill=NAVY)
+    d.line([(130, 440), (870, 440)], fill=(226, 232, 240, 255), width=3)
+    
+    b_trip = [
+        "學習團體生活與自主獨立照顧能力",
+        "走出教室實境體驗，拓展同窗眼界",
+        "深化同學之間一生珍貴的夥伴情誼",
+        "安全第一原則，細緻規劃每項參訪",
+        "由學校學務處統籌，公開透明安心"
+    ]
+    by1 = 475
+    for b in b_trip:
+        draw_dot(d, 145, by1 + 16, color=NAVY, r=8)
+        d.text((172, by1), b, font=get_font(True, 30), fill=TEXT_DARK)
+        by1 += 68
+
+    # Right Card: 畢業紀念冊編撰
+    base = draw_card(base, [980, 260, 1820, 830], bg_color=(255, 255, 255, 248), border_color=(88, 164, 126, 255), radius=22)
+    d = ImageDraw.Draw(base)
+    draw_badge(d, "定格六年底蘊的美好", 1030, 305, bg_color=GREEN, font_size=28)
+    d.text((1030, 375), "畢業紀念冊編撰", font=get_font(True, 46), fill=GREEN)
+    d.line([(1030, 440), (1770, 440)], fill=(226, 232, 240, 255), width=3)
+    
+    b_album = [
+        "記錄校園六年歡笑、汗水與成長",
+        "每位孩子都有專屬篇幅燦爛笑顏",
+        "親師生共同寫下真摯祝福與期許",
+        "專業團隊細緻攝影，高品質美編",
+        "長大後隨時翻閱的無價童年禮物"
+    ]
+    by2 = 475
+    for b in b_album:
+        draw_dot(d, 1045, by2 + 16, color=GREEN, r=8)
+        d.text((1072, by2), b, font=get_font(True, 30), fill=TEXT_DARK)
+        by2 += 68
+
+    # Bottom Heartfelt Motto
+    base = draw_card(base, [80, 860, SLIDE_W - 80, 960], bg_color=(235, 244, 250, 255), border_color=(44, 94, 138, 255), radius=16)
+    d = ImageDraw.Draw(base)
+    bw, bh = draw_badge(d, "高老師的心願", 120, 882, bg_color=NAVY, font_size=26)
+    d.text((120 + bw + 30, 886), "讓每一位 601 的孩子，都能帶著被滿滿愛意包裹的溫暖記憶畢業！", font=get_font(True, 32), fill=NAVY)
 
     base.convert("RGB").save(os.path.join(OUT_DIR, "16-graduation.png"), quality=95)
     print("Slide 16 generated.")
+
 
 # ----------------- SLIDE 17: ELECTION (NEW SPLIT) -----------------
 def gen_slide_17():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "17", "班級自治：推選 601 班親會「會長」與「總務」", "正因有畢業旅行、班服與紀念冊等重要活動，更需要家長幹部共同把關！")
+    draw_header_nav(draw, "17", "班級自治：推選 601 班親會「會長」與「總務」", "正因有畢業旅行與畢業紀念冊等重大專案，更需要家長幹部共同把關！")
     
     # 2 Big Cards: 會長 & 總務
     # Left: 會長
@@ -759,7 +763,7 @@ def gen_slide_17():
     
     c1 = [
         "代表六年一班全體家長發聲與協調",
-        "協助策劃支援班級重大活動（畢旅、活動）",
+        "協助策劃支援班級重大活動（畢旅、專案）",
         "擔任家長與學校行政、導師間最佳橋樑",
         "凝聚全班家長向心力，營造溫暖親師社群",
         "歡迎熱心、富使命感的家長自薦或推薦！"
@@ -778,7 +782,7 @@ def gen_slide_17():
     
     c2 = [
         "管理班級專屬經費帳戶，專款專用",
-        "負責畢業各項活動與班服款項之收取保管",
+        "負責畢業各項活動與專案款項之收取保管",
         "完整保留每一筆開銷單據與合法發票",
         "定期公開收支報表，財務透明全員安心",
         "歡迎細心、具財務經驗的家長熱情加入！"
@@ -1021,7 +1025,7 @@ def gen_slide_23():
     flow = [
         ("自由提問交流", "對孩子學習、作息與常規有任何想法均可提出。"),
         ("班親幹部推選", "現場推選班親會「會長」與「總務」，共同把關經費。"),
-        ("畢業專案討論", "班服樣式建議、畢旅期望與紀念冊製作交流。"),
+        ("畢業專案討論", "畢業旅行期望、活動規劃與紀念冊製作交流。"),
         ("填寫回饋表單", "歡迎家長掃描 QR Code 或填寫紙本，提供建言。")
     ]
     fy = 465
@@ -1090,7 +1094,7 @@ def gen_slide_24():
     c2_items = [
         "推選確認 601「班親會長」",
         "推選確認班級「總務幹部」",
-        "共同把關畢旅與班服經費",
+        "共同把關畢業專案與各項經費",
         "親師攜手做孩子最強後援"
     ]
     y = 485

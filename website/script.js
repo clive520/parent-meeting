@@ -79,8 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       file: "assets/slides/16-graduation.png",
-      title: "Page 16｜六年級專屬盛事：班服、畢旅與畢業紀念冊",
-      note: "小學里程碑盛事：專屬班服凝聚班級向心力、兩天一夜畢業旅行鍛鍊獨立、畢業紀念冊典藏童年最美笑顏。"
+      title: "Page 16｜六年級專屬盛事：畢旅與畢業紀念冊",
+      note: "小學里程碑盛事：兩天一夜畢業旅行鍛鍊獨立自主、畢業紀念冊典藏童年最美笑顏。"
     },
     {
       file: "assets/slides/17-election.png",

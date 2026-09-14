@@ -27,7 +27,7 @@ c:\Antigravity\班親會\
 │   ├── 13-health-safety.png       # 13 校園健康守護：環境通風與發燒休養
 │   ├── 14-attendance-rules.png    # 14 請假規範指南：8:30 前通報管道與流程
 │   ├── 15-attendance-security.png # 15 校園安全管理：外出嚴格審核與中輟通報
-│   ├── 16-graduation.png          # 16 六年級專屬盛事：班服、畢旅與紀念冊
+│   ├── 16-graduation.png          # 16 六年級專屬盛事：畢旅與紀念冊
 │   ├── 17-election.png            # 17 班級自治與推選：班親會長與總務幹部
 │   ├── 18-finance-pledge.png      # 18 班級財務透明：高老師的三大透明承諾
 │   ├── 19-committee.png           # 19 誠摯致謝：114學年度本班家長委員會委員
