@@ -1136,6 +1136,15 @@ def main():
     for i in range(1, 25):
         globals()[f"gen_slide_{i:02d}"]()
     print("All 24 slides generated successfully.")
+    
+    # Auto-sync to website assets & root assets
+    import shutil
+    for target in [r"C:\Antigravity\班親會\assets\slides", r"C:\Antigravity\班親會\website\assets\slides"]:
+        os.makedirs(target, exist_ok=True)
+        for f in os.listdir(OUT_DIR):
+            if f.endswith(".png"):
+                shutil.copy2(os.path.join(OUT_DIR, f), os.path.join(target, f))
+    print("All slides synced to web assets.")
 
 if __name__ == "__main__":
     main()
