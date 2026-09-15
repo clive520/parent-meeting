@@ -1,7 +1,7 @@
 // 臺中市沙鹿區鹿陽國小 六年一班 班親會網站互動邏輯
 document.addEventListener("DOMContentLoaded", () => {
   // Slide Data
-  const slides = [
+    const slides = [
     {
       file: "assets/slides/01-cover.png",
       title: "Page 01｜航向未來的起點（開場封面）",
@@ -38,88 +38,98 @@ document.addEventListener("DOMContentLoaded", () => {
       note: "臺中市「愛閱家庭」雲端智慧存摺：115.09.16~10.25 線上申請，每週共讀 3 次、每次 20 分鐘，共創書香家庭。"
     },
     {
-      file: "assets/slides/08-reading-ai.png",
-      title: "Page 08｜【自主閱讀深耕】AI 雲端閱讀理解認證平台",
+      file: "assets/slides/08-taichung-digital-reading.png",
+      title: "Page 08｜市府數位閱讀寶庫：國語日報 ＆ Hami 書城",
+      note: "臺中市政府全額授權閱讀福利：國語日報數位精選版（加分吧平臺 OpenID 登入，享全文注音與 AI 朗讀）與 Hami 書城（180+ 種期刊童書，免排隊零等待萬人暢讀）。"
+    },
+    {
+      file: "assets/slides/09-reading-plan.png",
+      title: "Page 09｜親子共訂閱讀計畫：探討專屬書單與學期目標",
+      note: "親師生共讀共融：邀請家長與孩子共同探討專屬書單，訂定每日 20 分鐘共讀節奏，透過高層次提問分享，讓閱讀被看見、被肯定。"
+    },
+    {
+      file: "assets/slides/10-reading-ai.png",
+      title: "Page 10｜【自主閱讀深耕】AI 雲端閱讀理解認證平台",
       note: "高老師研發創新：運用 Google AI Studio 開發之專屬閱讀認證系統，引導孩子以理解代替死記，用自己的話思考表達。"
     },
     {
-      file: "assets/slides/09-gear-novel.png",
-      title: "Page 09｜【長篇閱讀深耕】《冒險齒輪》少兒原創小說庫",
+      file: "assets/slides/11-gear-novel.png",
+      title: "Page 11｜【長篇閱讀深耕】《冒險齒輪》少兒原創小說庫",
       note: "高老師原創開發：專為少兒打造的長篇解謎科幻小說，支援中英即時切換與語音朗讀，引導孩子靜心閱讀長篇文章。"
     },
     {
-      file: "assets/slides/10-digital-wings.png",
-      title: "Page 10｜3C 學習哲學：科技是翅膀而非猛獸",
+      file: "assets/slides/12-digital-wings.png",
+      title: "Page 12｜3C 學習哲學：科技是翅膀而非猛獸",
       note: "高老師理念：3C 是數位時代的關鍵翅膀！引導孩子善用科技於查證百科、解題輔助與生活探索，正向賦能。"
     },
     {
-      file: "assets/slides/11-digital-discipline.png",
-      title: "Page 11｜數位自律公約：親師一致的健康使用準則",
+      file: "assets/slides/13-digital-discipline.png",
+      title: "Page 13｜數位自律公約：親師一致的健康使用準則",
       note: "親師一致約定：屏幕使用每日時限約定、睡前 1 小時手機不進臥室、專注學習時不切換娛樂視窗，建立健康數位習慣。"
     },
     {
-      file: "assets/slides/12-health-hygiene.png",
-      title: "Page 12｜校園衛教守則：正確洗手與呼吸道禮節",
+      file: "assets/slides/14-health-hygiene.png",
+      title: "Page 14｜校園衛教守則：正確洗手與呼吸道禮節",
       note: "校園衛生防護：洗手七字訣（內外夾弓大立腕）搓洗 40 秒、咳嗽噴嚏手肘遮口鼻，共同守護校園衛生。"
     },
     {
-      file: "assets/slides/13-health-safety.png",
-      title: "Page 13｜校園健康守護：環境通風與發燒休養",
+      file: "assets/slides/15-health-safety.png",
+      title: "Page 15｜校園健康守護：環境通風與發燒休養",
       note: "健康中心叮嚀：對角開窗維持通風；發燒（≥37.5℃）請假在家休養，退燒滿 24 小時再返校，不舒服別硬撐。"
     },
     {
-      file: "assets/slides/14-attendance-rules.png",
-      title: "Page 14｜請假規範指南：8:30 前通報管道與流程",
+      file: "assets/slides/16-attendance-rules.png",
+      title: "Page 16｜請假規範指南：8:30 前通報管道與流程",
       note: "差勤通報準則：每日 8:30 前完成請假通報（LINE 或學校總機 04-26567968 轉 720/724），2日內導師核准。"
     },
     {
-      file: "assets/slides/15-attendance-security.png",
-      title: "Page 15｜校園安全管理：外出嚴格審核與中輟通報",
+      file: "assets/slides/17-attendance-security.png",
+      title: "Page 17｜校園安全管理：外出嚴格審核與中輟通報",
       note: "安全出入把關：臨時外出需由家長至警衛室換證接回；未請假達 3 日依法通報中輟，親師聯手守護平安。"
     },
     {
-      file: "assets/slides/16-graduation.png",
-      title: "Page 16｜六年級專屬盛事：畢旅與畢業紀念冊",
+      file: "assets/slides/18-graduation.png",
+      title: "Page 18｜六年級專屬盛事：畢旅與畢業紀念冊",
       note: "小學里程碑盛事：兩天一夜畢業旅行鍛鍊獨立自主、畢業紀念冊典藏童年最美笑顏。"
     },
     {
-      file: "assets/slides/17-election.png",
-      title: "Page 17｜班級自治與推選：班親會長與總務幹部",
+      file: "assets/slides/19-election.png",
+      title: "Page 19｜班級自治與推選：班親會長與總務幹部",
       note: "推選班親會長（親師溝通代表）與總務幹部（專案經費保管與記帳），熱情邀請熱心家長一同為班級服務！"
     },
     {
-      file: "assets/slides/18-finance-pledge.png",
-      title: "Page 18｜班級財務透明：高老師的三大透明承諾",
+      file: "assets/slides/20-finance-pledge.png",
+      title: "Page 20｜班級財務透明：高老師的三大透明承諾",
       note: "高老師承諾三大保證：① 專款專用、② 帳目公開透明、③ 總務與導師/會長雙人覆核，每一筆花費清清楚楚。"
     },
     {
-      file: "assets/slides/19-committee.png",
-      title: "Page 19｜誠摯致謝：114學年度本班家長委員會委員",
+      file: "assets/slides/21-committee.png",
+      title: "Page 21｜誠摯致謝：114學年度本班家長委員會委員",
       note: "公開感謝本班家長委員無私承擔重任，搭建班級與學校的堅實橋樑，為六年一班孩子爭取最優質資源。"
     },
     {
-      file: "assets/slides/20-volunteer.png",
-      title: "Page 20｜熱忱招募：115學年度愛心志工隊（交通組／圖書組）",
+      file: "assets/slides/22-volunteer.png",
+      title: "Page 22｜熱忱招募：115學年度愛心志工隊（交通組／圖書組）",
       note: "學校志工隊招募：「因為有您，孩子的安全更有保障；因為有您，孩子的笑容更加燦爛。」包含交通安全維護與圖書室推廣，歡迎家長填寫回條或向導師報名！"
     },
     {
-      file: "assets/slides/21-communication.png",
-      title: "Page 21｜親師即時連線：LINE 常態溝通與緊急專線",
+      file: "assets/slides/23-communication.png",
+      title: "Page 23｜親師即時連線：LINE 常態溝通與緊急專線",
       note: "平時日常聯繫請多利用 LINE 留言；遇突發急症或緊急事故，請直接撥打導師專線：0963-159-896。"
     },
     {
-      file: "assets/slides/22-message.png",
-      title: "Page 22｜給家長的一封信：並肩走一段平穩堅定的路",
+      file: "assets/slides/24-message.png",
+      title: "Page 24｜給家長的一封信：並肩走一段平穩堅定的路",
       note: "「我們不替孩子走完人生的路，但在他跌倒時，陪伴他勇敢站起來。」感謝家長六年來的悉心灌溉，未來一年親師繼續並肩做神隊友，給孩子展翅的底氣。"
     },
     {
-      file: "assets/slides/23-qa.png",
-      title: "Page 23｜感謝聆聽與交流時間（Q&A）",
+      file: "assets/slides/25-qa.png",
+      title: "Page 25｜感謝聆聽與交流時間（Q&A）",
       note: "現場自由提問、班親幹部推選與意見交流。祝各位闔家平安，感謝各位家長對六年一班的溫暖支持！"
     },
     {
-      file: "assets/slides/24-reminder.png",
-      title: "Page 24｜現場重要提醒：今日親師會三大必辦事項",
+      file: "assets/slides/26-reminder.png",
+      title: "Page 26｜現場重要提醒：今日親師會三大必辦事項",
       note: "離席前三大叮嚀：① 完成出席簽到表簽名、② 推選確認 601 班親會長與總務幹部、③ 有意願擔任愛心志工的家長登記回條。感謝家長！"
     }
   ];
