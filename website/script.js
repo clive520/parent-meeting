@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       file: "assets/slides/08-taichung-digital-reading.png",
       title: "Page 08｜市府數位閱讀寶庫：國語日報 ＆ Hami 書城",
-      note: "臺中市政府全額授權閱讀福利：國語日報數位精選版（加分吧平臺 OpenID 登入，享全文注音與 AI 朗讀）與 Hami 書城（180+ 種期刊童書，免排隊零等待萬人暢讀）。"
+      note: "臺中市政府全額授權閱讀福利：① 國語日報數位 (https://mdnereading.mdnkids.com/)；② Hami 書城 (https://www.hamibook.com.tw/Homes/book)。萬人同時在線免排隊零等待！"
     },
     {
       file: "assets/slides/09-reading-plan.png",

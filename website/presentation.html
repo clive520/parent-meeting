@@ -277,6 +277,50 @@
     .toast.show {
       opacity: 1;
     }
+  
+    /* Floating External Links Bar for Reading Resources */
+    .floating-resource-bar {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 45;
+      display: none;
+      gap: 1rem;
+      background: rgba(15, 23, 42, 0.88);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    .floating-res-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #FFF;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      transition: all 0.2s ease;
+    }
+    .floating-res-link.mdn {
+      background: #E88D67;
+    }
+    .floating-res-link.mdn:hover {
+      background: #D67247;
+      transform: scale(1.05);
+    }
+    .floating-res-link.hami {
+      background: #2C5E8A;
+    }
+    .floating-res-link.hami:hover {
+      background: #1E4263;
+      transform: scale(1.05);
+    }
+
   </style>
 </head>
 <body>
@@ -385,7 +429,7 @@
       {
         src: "assets/slides/08-taichung-digital-reading.png",
         title: "Page 08｜市府數位閱讀寶庫：國語日報 ＆ Hami 書城",
-        notes: "<strong>【數位資源福利】</strong> 臺中市政府全額授權之公有閱讀寶庫：① <strong>國語日報數位精選版</strong>：經由「加分吧」平臺以教育雲端帳號 (OpenID) 登入，享全文注音、AI 語音朗讀、108 課綱跨域時事與素養學習單。② <strong>Hami 書城</strong>：教育局專屬平臺萬人同時在線「免排隊、免預約、零等待」，跨載具支援離線下載，涵蓋 180+ 種熱門期刊雜誌與科普童書，手機平板就是隨身圖書館！"
+        notes: "<strong>【數位資源福利】</strong> 臺中市政府全額授權之公有閱讀寶庫：<br><br>① <strong>國語日報數位精選版</strong>：經由「加分吧」平臺以教育雲端帳號 (OpenID) 登入，享全文注音、AI 語音朗讀、108 課綱跨域時事與素養學習單。<br>👉 <a href='https://mdnereading.mdnkids.com/' target='_blank' style='color:#E88D67;font-weight:bold;text-decoration:underline;'>點此直接前往【國語日報數位】(mdnereading.mdnkids.com)</a><br><br>② <strong>Hami 書城</strong>：教育局專屬平臺萬人同時在線「免排隊、免預約、零等待」，跨載具支援離線下載，涵蓋 180+ 種熱門期刊雜誌與科普童書！<br>👉 <a href='https://www.hamibook.com.tw/Homes/book' target='_blank' style='color:#60A5FA;font-weight:bold;text-decoration:underline;'>點此直接前往【Hami 書城】(www.hamibook.com.tw)</a>"
       },
       {
         src: "assets/slides/09-reading-plan.png",
@@ -500,6 +544,12 @@
     const toast = document.getElementById("toast");
 
     function renderSlide(idx) {
+      // Toggle resource bar on Slide 08 (index 7)
+      const resBar = document.getElementById("quick-resource-bar");
+      if (resBar) {
+        resBar.style.display = (idx === 7) ? "flex" : "none";
+      }
+
       if (idx < 0) idx = 0;
       if (idx >= slidesData.length) idx = slidesData.length - 1;
       currentIdx = idx;
