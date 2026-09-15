@@ -93,43 +93,48 @@ document.addEventListener("DOMContentLoaded", () => {
       note: "小學里程碑盛事：兩天一夜畢業旅行鍛鍊獨立自主、畢業紀念冊典藏童年最美笑顏。"
     },
     {
-      file: "assets/slides/19-election.png",
-      title: "Page 19｜班級自治與推選：班親會長與總務幹部",
+      file: "assets/slides/19-album-quotation.png",
+      title: "Page 19｜【畢業專案費用公開】畢業紀念冊規格、攝影與費用預估",
+      note: "天藝數位影像報價公開：整本購買每本 870 元（28位專屬頁＋蝴蝶裝完全攤平＋2吋證件照8張與修片QR檔）；僅拍照不購冊每人 250 元工本費。費用透明、滿意再付款。"
+    },
+    {
+      file: "assets/slides/20-election.png",
+      title: "Page 20｜班級自治與推選：班親會長與總務幹部",
       note: "推選班親會長（親師溝通代表）與總務幹部（專案經費保管與記帳），熱情邀請熱心家長一同為班級服務！"
     },
     {
-      file: "assets/slides/20-finance-pledge.png",
-      title: "Page 20｜班級財務透明：高老師的三大透明承諾",
+      file: "assets/slides/21-finance-pledge.png",
+      title: "Page 21｜班級財務透明：高老師的三大透明承諾",
       note: "高老師承諾三大保證：① 專款專用、② 帳目公開透明、③ 總務與導師/會長雙人覆核，每一筆花費清清楚楚。"
     },
     {
-      file: "assets/slides/21-committee.png",
-      title: "Page 21｜誠摯致謝：114學年度本班家長委員會委員",
+      file: "assets/slides/22-committee.png",
+      title: "Page 22｜誠摯致謝：114學年度本班家長委員會委員",
       note: "公開感謝本班家長委員無私承擔重任，搭建班級與學校的堅實橋樑，為六年一班孩子爭取最優質資源。"
     },
     {
-      file: "assets/slides/22-volunteer.png",
-      title: "Page 22｜熱忱招募：115學年度愛心志工隊（交通組／圖書組）",
+      file: "assets/slides/23-volunteer.png",
+      title: "Page 23｜熱忱招募：115學年度愛心志工隊（交通組／圖書組）",
       note: "學校志工隊招募：「因為有您，孩子的安全更有保障；因為有您，孩子的笑容更加燦爛。」包含交通安全維護與圖書室推廣，歡迎家長填寫回條或向導師報名！"
     },
     {
-      file: "assets/slides/23-communication.png",
-      title: "Page 23｜親師即時連線：LINE 常態溝通與緊急專線",
+      file: "assets/slides/24-communication.png",
+      title: "Page 24｜親師即時連線：LINE 常態溝通與緊急專線",
       note: "平時日常聯繫請多利用 LINE 留言；遇突發急症或緊急事故，請直接撥打導師專線：0963-159-896。"
     },
     {
-      file: "assets/slides/24-message.png",
-      title: "Page 24｜給家長的一封信：並肩走一段平穩堅定的路",
+      file: "assets/slides/25-message.png",
+      title: "Page 25｜給家長的一封信：並肩走一段平穩堅定的路",
       note: "「我們不替孩子走完人生的路，但在他跌倒時，陪伴他勇敢站起來。」感謝家長六年來的悉心灌溉，未來一年親師繼續並肩做神隊友，給孩子展翅的底氣。"
     },
     {
-      file: "assets/slides/25-qa.png",
-      title: "Page 25｜感謝聆聽與交流時間（Q&A）",
+      file: "assets/slides/26-qa.png",
+      title: "Page 26｜感謝聆聽與交流時間（Q&A）",
       note: "現場自由提問、班親幹部推選與意見交流。祝各位闔家平安，感謝各位家長對六年一班的溫暖支持！"
     },
     {
-      file: "assets/slides/26-reminder.png",
-      title: "Page 26｜現場重要提醒：今日親師會三大必辦事項",
+      file: "assets/slides/27-reminder.png",
+      title: "Page 27｜現場重要提醒：今日親師會三大必辦事項",
       note: "離席前三大叮嚀：① 完成出席簽到表簽名、② 推選確認 601 班親會長與總務幹部、③ 有意願擔任愛心志工的家長登記回條。感謝家長！"
     }
   ];
