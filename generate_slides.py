@@ -426,8 +426,7 @@ def gen_slide_09():
         ("步驟二：訂定閱讀目標", NAVY, "可執行的節奏", [
             "每日固定 20 分鐘無干擾閱讀時間",
             "設定每週或每月閱讀本數（量力而為）",
-            "結合愛閱家庭雲端存摺記錄成長",
-            "運用 Google AI 認證平台檢核理解"
+            "結合愛閱家庭雲端存摺記錄成長"
         ]),
         ("步驟三：共讀提問分享", GREEN, "深化高階思維", [
             "不考「書裡說什麼」，問「你怎麼看」",
@@ -449,11 +448,17 @@ def gen_slide_09():
         d.text((x + 35, cy + 95), title, font=get_font(True, 38), fill=color)
         d.line([(x + 35, cy + 160), (x + cw - 35, cy + 160)], fill=(226, 232, 240, 255), width=3)
         
-        by = cy + 195
+        # Dynamic spacing for cards with 3 vs 4 bullets
+        if len(bullets) == 3:
+            by = cy + 220
+            step_y = 100
+        else:
+            by = cy + 195
+            step_y = 88
         for b in bullets:
             draw_dot(d, x + 40, by + 16, color=color, r=8)
             d.text((x + 65, by), b, font=get_font(False, 28), fill=TEXT_DARK)
-            by += 88
+            by += step_y
 
     # Bottom Banner: 導師陪伴心法
     base = draw_card(base, [80, 865, 1830, 975], bg_color=(240, 249, 244, 255), border_color=GREEN, radius=18)
