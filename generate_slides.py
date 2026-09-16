@@ -1,5 +1,20 @@
 import os
 from PIL import Image, ImageDraw, ImageFont
+import qrcode
+
+def get_website_qr(size=230):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_M,
+        box_size=10,
+        border=2
+    )
+    qr.add_data("https://clive520.github.io/parent-meeting/")
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="#2C5E8A", back_color="white").convert("RGBA")
+    return img.resize((size, size), Image.Resampling.LANCZOS)
+
+
 
 SLIDE_W = 1920
 SLIDE_H = 1080
@@ -94,6 +109,11 @@ def gen_slide_01():
     c_draw = ImageDraw.Draw(card)
     c_draw.rounded_rectangle([card_x, card_y, card_x + card_w, card_y + card_h], radius=24, fill=(255, 255, 255, 242), outline=(255, 255, 255, 255), width=3)
     
+    # QR Card on the right
+    qr_w, qr_h = 420, 520
+    qr_x, qr_y = 1410, 210
+    c_draw.rounded_rectangle([qr_x, qr_y, qr_x + qr_w, qr_y + qr_h], radius=24, fill=(255, 255, 255, 245), outline=(232, 141, 103, 200), width=3)
+
     out = Image.alpha_composite(base, card)
     draw = ImageDraw.Draw(out)
     
@@ -115,6 +135,18 @@ def gen_slide_01():
         qy += 66
         
     draw_badge(draw, "導師：高志賢 老師", card_x + 50, card_y + 600, bg_color=NAVY, font_size=32, pad_x=32, pad_y=14)
+
+    # QR Card Content
+    draw_badge(draw, "班親專屬網站", qr_x + 35, qr_y + 30, bg_color=NAVY, font_size=22, pad_x=16, pad_y=6)
+    draw.text((qr_x + 35, qr_y + 80), "掃描開啟班親手冊", font=get_font(True, 32), fill=NAVY)
+    draw.text((qr_x + 35, qr_y + 125), "現場免抄筆記・線上同步瀏覽", font=get_font(False, 20), fill=TEXT_MUTED)
+
+    qr_img = get_website_qr(size=230)
+    out.paste(qr_img, (qr_x + int((qr_w - 230)/2), qr_y + 165), qr_img)
+
+    draw.text((qr_x + 40, qr_y + 420), "網址：clive520.github.io/parent-meeting", font=get_font(False, 16), fill=TEXT_MUTED)
+    draw_badge(draw, "免排隊零等待・全彩隨身看", qr_x + 48, qr_y + 452, bg_color=(235, 244, 250), text_color=NAVY, font_size=18, pad_x=18, pad_y=4)
+
     out.convert("RGB").save(os.path.join(OUT_DIR, "01-cover.png"), quality=95)
     print("Slide 01 generated.")
 
@@ -1316,68 +1348,83 @@ def gen_slide_27():
     base.convert("RGB").save(os.path.join(OUT_DIR, "27-qa.png"), quality=95)
     print("Slide 27 generated.")
 
-# ----------------- SLIDE 27: MEETING CHECKLIST / REMINDER -----------------
+# ----------------- SLIDE 28: MEETING CHECKLIST / REMINDER -----------------
 def gen_slide_28():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "28", "現場重要提醒：今日親師會三大必辦事項", "感謝各位家長熱情參與・離席前請協助確認完成以下三項核心要事")
-    
-    # Card 1: 1. 親師會家長簽到 (Navy Theme)
-    base = draw_card(base, [70, 245, 630, 815], bg_color=(240, 246, 252, 255), border_color=(44, 94, 138, 255), radius=22)
+    draw_header_nav(draw, "28", "現場重要提醒：今日親師會三大必辦事項", "感謝各位家長熱情參與・離席前請協助確認完成以下三大核心要事")
+
+    # 4 Cards Layout
+    # Card 1: 簽到 (x: 70 to 485)
+    base = draw_card(base, [70, 245, 485, 815], bg_color=(235, 244, 250, 255), border_color=(44, 94, 138, 255), radius=22)
     d = ImageDraw.Draw(base)
-    draw_badge(d, "必辦要事 01", 110, 290, bg_color=NAVY, font_size=26)
-    d.text((110, 360), "家長出席簽到", font=get_font(True, 38), fill=NAVY)
-    draw_badge(d, "出席確認與資料領取", 110, 420, bg_color=(203, 222, 240), text_color=NAVY, font_size=20, pad_x=14, pad_y=4)
-    
+    draw_badge(d, "必辦要事 01", 100, 285, bg_color=NAVY, font_size=24)
+    d.text((100, 350), "家長出席簽到", font=get_font(True, 34), fill=NAVY)
+    draw_badge(d, "出席確認與資料領取", 100, 410, bg_color=(203, 222, 240), text_color=NAVY, font_size=19, pad_x=12, pad_y=4)
+
     c1_items = [
         "確認已於簽到表簽名",
         "掌握班級出席名冊",
-        "領取各處室書面通知單",
-        "確保親師通訊管道暢通"
+        "領取各處室通知單",
+        "確保通訊管道暢通"
     ]
-    y = 485
+    y = 475
     for item in c1_items:
-        draw_dot(d, 120, y + 15, color=NAVY, r=7)
-        d.text((145, y), item, font=get_font(True, 26), fill=TEXT_DARK)
-        y += 70
+        draw_dot(d, 105, y + 14, color=NAVY, r=6)
+        d.text((125, y), item, font=get_font(True, 24), fill=TEXT_DARK)
+        y += 72
 
-    # Card 2: 2. 親師會會長及總務推選 (Orange Theme)
-    base = draw_card(base, [680, 245, 1240, 815], bg_color=(254, 246, 240, 255), border_color=(232, 141, 103, 255), radius=22)
+    # Card 2: 幹部推選 (x: 515 to 930)
+    base = draw_card(base, [515, 245, 930, 815], bg_color=(254, 246, 240, 255), border_color=(232, 141, 103, 255), radius=22)
     d = ImageDraw.Draw(base)
-    draw_badge(d, "必辦要事 02", 720, 290, bg_color=ORANGE, font_size=26)
-    d.text((720, 360), "會長及總務推選", font=get_font(True, 38), fill=ORANGE)
-    draw_badge(d, "班親自治核心團隊", 720, 420, bg_color=(254, 224, 210), text_color=ORANGE, font_size=20, pad_x=14, pad_y=4)
-    
+    draw_badge(d, "必辦要事 02", 545, 285, bg_color=ORANGE, font_size=24)
+    d.text((545, 350), "會長及總務推選", font=get_font(True, 34), fill=ORANGE)
+    draw_badge(d, "班親自治核心團隊", 545, 410, bg_color=(254, 224, 210), text_color=ORANGE, font_size=19, pad_x=12, pad_y=4)
+
     c2_items = [
-        "推選確認 601「班親會長」",
-        "推選確認班級「總務幹部」",
-        "共同把關畢業專案與各項經費",
-        "親師攜手做孩子最強後援"
+        "推選確認 601「會長」",
+        "推選確認「總務幹部」",
+        "共同把關畢業各項經費",
+        "親師攜手做最強後援"
     ]
-    y = 485
+    y = 475
     for item in c2_items:
-        draw_dot(d, 730, y + 15, color=ORANGE, r=7)
-        d.text((755, y), item, font=get_font(True, 26), fill=TEXT_DARK)
-        y += 70
+        draw_dot(d, 550, y + 14, color=ORANGE, r=6)
+        d.text((570, y), item, font=get_font(True, 24), fill=TEXT_DARK)
+        y += 72
 
-    # Card 3: 3. 有意願當志工的家長 (Green Theme)
-    base = draw_card(base, [1290, 245, 1850, 815], bg_color=(240, 249, 244, 255), border_color=(88, 164, 126, 255), radius=22)
+    # Card 3: 志工招募 (x: 960 to 1375)
+    base = draw_card(base, [960, 245, 1375, 815], bg_color=(240, 249, 244, 255), border_color=(88, 164, 126, 255), radius=22)
     d = ImageDraw.Draw(base)
-    draw_badge(d, "必辦要事 03", 1330, 290, bg_color=GREEN, font_size=26)
-    d.text((1330, 360), "愛心志工意願登記", font=get_font(True, 38), fill=GREEN)
-    draw_badge(d, "守護學童溫暖力量", 1330, 420, bg_color=(209, 237, 222), text_color=GREEN, font_size=20, pad_x=14, pad_y=4)
-    
+    draw_badge(d, "必辦要事 03", 990, 285, bg_color=GREEN, font_size=24)
+    d.text((990, 350), "愛心志工意願", font=get_font(True, 34), fill=GREEN)
+    draw_badge(d, "守護學童溫暖力量", 990, 410, bg_color=(209, 237, 222), text_color=GREEN, font_size=19, pad_x=12, pad_y=4)
+
     c3_items = [
         "交通組：上放學路口導護",
-        "圖書組：晨間書籍借還推廣",
+        "圖書組：晨間書籍借還",
         "現場向高老師登記報名",
-        "或填妥紙本回條由孩子帶來"
+        "或填妥回條由孩子帶來"
     ]
-    y = 485
+    y = 475
     for item in c3_items:
-        draw_dot(d, 1340, y + 15, color=GREEN, r=7)
-        d.text((1365, y), item, font=get_font(True, 26), fill=TEXT_DARK)
-        y += 70
+        draw_dot(d, 995, y + 14, color=GREEN, r=6)
+        d.text((1015, y), item, font=get_font(True, 24), fill=TEXT_DARK)
+        y += 72
+
+    # Card 4: QR Code (x: 1405 to 1850)
+    base = draw_card(base, [1405, 245, 1850, 815], bg_color=(255, 255, 255, 250), border_color=NAVY, radius=22)
+    d = ImageDraw.Draw(base)
+    draw_badge(d, "班親專屬網站", 1435, 285, bg_color=NAVY, font_size=24)
+    d.text((1435, 350), "掃描帶走電子手冊", font=get_font(True, 32), fill=NAVY)
+
+    # Paste QR
+    qr_img = get_website_qr(size=230)
+    base.paste(qr_img, (1435 + int((445 - 230)/2), 415), qr_img)
+
+    d.text((1440, 675), "手機隨身查閱・轉傳家人", font=get_font(True, 22), fill=TEXT_DARK)
+    d.text((1440, 715), "完整簡報 × 評量 × 畢冊報價", font=get_font(False, 19), fill=TEXT_MUTED)
+    d.text((1440, 755), "clive520.github.io/parent-meeting", font=get_font(False, 16), fill=NAVY)
 
     # Bottom Banner: 導師致謝與溫馨叮嚀
     base = draw_card(base, [70, 840, 1850, 960], bg_color=(255, 255, 255, 252), border_color=GOLD, radius=18)
