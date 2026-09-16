@@ -18,9 +18,10 @@ def get_website_qr(size=230):
 
 SLIDE_W = 1920
 SLIDE_H = 1080
-TOTAL_SLIDES = 28
+TOTAL_SLIDES = 29
 
-OUT_DIR = r"C:\Antigravity\班親會\slides"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+OUT_DIR = os.path.join(BASE_DIR, "slides")
 BRAIN_DIR = r"C:\Users\hp\.gemini\antigravity\brain\437cad19-ae1d-46bf-a0ef-ff951c2a0052"
 
 os.makedirs(OUT_DIR, exist_ok=True)
@@ -690,10 +691,107 @@ def gen_slide_12():
     base.convert("RGB").save(os.path.join(OUT_DIR, "12-assessment.png"), quality=95)
     print("Slide 12 generated.")
 
+# ----------------- SLIDE 13: PRACTICAL ASSESSMENT (NEW) -----------------
 def gen_slide_13():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "13", "科技是翅膀，不是猛獸：高老師的 3C 哲學", "不把 3C 當洪水猛獸・擁抱數位工具作為高年級自主學習的強大助力")
+    draw_header_nav(draw, "13", "跳脫死背，學以致用：六年級跨領域實作評量", "動手做的實踐力 × 解決問題的思考力 × 資料收集與思辨驗證")
+
+    # Card 1: 核心教育用意 (左欄)
+    base = draw_card(base, [80, 260, 640, 865], bg_color=(254, 243, 238, 255), border_color=ORANGE, radius=20)
+    d = ImageDraw.Draw(base)
+    draw_badge(d, "核心教育用意", 115, 290, bg_color=ORANGE, font_size=24)
+    d.text((115, 345), "不只死讀書，培育真實能力", font=get_font(True, 34), fill=ORANGE)
+
+    p1 = [
+        ("跳脫死背標準答案", "面對未來挑戰，更需要將知識轉化為實踐行動的能力。"),
+        ("動手實作的工藝力", "親自組裝、模型建構、測試改良，體會做中學的成就感。"),
+        ("主動解決問題的思維", "在限制條件與挑戰情境中拆解難題，經歷多次嘗試與復盤。"),
+        ("資料收集與查核思辨", "跨領域整合資訊，學會辨識事實與數據真偽，不盲信盲從。"),
+        ("這一年全班進行一次", "每位六年級孩子都將親身經歷跨學科實作評量的深度洗禮！")
+    ]
+    y1 = 410
+    for title, desc in p1:
+        d.text((115, y1), f"◎ {title}", font=get_font(True, 22), fill=ORANGE)
+        d.text((138, y1 + 30), desc, font=get_font(False, 18), fill=TEXT_DARK)
+        y1 += 84
+
+    # Card 2: 三大跨領域實作任務 (中欄)
+    base = draw_card(base, [670, 260, 1250, 865], bg_color=(235, 244, 250, 255), border_color=NAVY, radius=20)
+    d = ImageDraw.Draw(base)
+    draw_badge(d, "多元任務情境", 705, 290, bg_color=NAVY, font_size=24)
+    d.text((705, 345), "三大跨學科實作挑戰", font=get_font(True, 34), fill=NAVY)
+
+    tasks = [
+        ("任務 A：AI 協作解題挑戰", "資訊科技 × 語文領域", [
+            "小六生化身「AI提示工程師」，在限制邊界下對話，",
+            "親自除錯、查核數據，培養批判思維並破除AI幻覺。"
+        ]),
+        ("任務 B：冰棒棍力學美學橋", "數學 × 藝術 × 語文", [
+            "小小土木工程師！運用幾何三角形剛性設計桁架橋，",
+            "手工組裝黏製，進行極限載重破壞測試與效能復盤。"
+        ]),
+        ("任務 C：畫筆下的社會顯影鏡", "社會 × 語文 × 藝術", [
+            "青年議題導覽員！解讀名畫隱喻連結當代社會現象，",
+            "限時組裝簡報，進行3分鐘現場導覽演說與觀點表達。"
+        ])
+    ]
+    y2 = 405
+    for t_title, t_sub, t_lines in tasks:
+        d.text((705, y2), f"★ {t_title}", font=get_font(True, 22), fill=NAVY)
+        draw_badge(d, t_sub, 705, y2 + 27, bg_color=(203, 222, 240), text_color=NAVY, font_size=16, pad_x=10, pad_y=2)
+        ly = y2 + 62
+        for l in t_lines:
+            d.text((705, ly), l, font=get_font(False, 17), fill=TEXT_DARK)
+            ly += 25
+        y2 += 140
+
+    # Card 3: 三軌評量機制 (右欄)
+    base = draw_card(base, [1280, 260, 1840, 865], bg_color=(240, 249, 244, 255), border_color=GREEN, radius=20)
+    d = ImageDraw.Draw(base)
+    draw_badge(d, "結構化評量", 1315, 290, bg_color=GREEN, font_size=24)
+    d.text((1315, 345), "三軌客觀評量與反思", font=get_font(True, 34), fill=GREEN)
+
+    tracks = [
+        ("學生自我評量 (20%)", [
+            "對照質性規準反思學習歷程與策略，",
+            "培養自律自主與深刻的後設認知能力。"
+        ]),
+        ("同儕相互評量 (30%)", [
+            "學習欣賞同儕亮點，給予具體建設性回饋，",
+            "在互評互學中深化對評量標準的理解。"
+        ]),
+        ("教師專業評量 (50%)", [
+            "依據嚴謹明確的 Rubrics 量表進行總結評定，",
+            "兼顧個別差異，給予激勵性指導評語。"
+        ]),
+        ("重視歷程，甚於結果", [
+            "載重斷裂或AI回答不完美都是寶貴養分！",
+            "關鍵在於分析原因、復盤反思與持續優化。"
+        ])
+    ]
+    y3 = 405
+    for t_head, t_lines in tracks:
+        d.text((1315, y3), f"◎ {t_head}", font=get_font(True, 22), fill=GREEN)
+        ly = y3 + 28
+        for l in t_lines:
+            d.text((1338, ly), l, font=get_font(False, 17), fill=TEXT_DARK)
+            ly += 24
+        y3 += 105
+
+    # Bottom Banner: 導師理念
+    base = draw_card(base, [80, 885, 1840, 985], bg_color=(255, 255, 255, 250), border_color=GOLD, radius=16)
+    d = ImageDraw.Draw(base)
+    bw, bh = draw_badge(d, "高老師育人理念", 115, 908, bg_color=GOLD, font_size=22)
+    d.text((115 + bw + 20, 915), "「給孩子一個真實的問題，他會用想像力與行動力給我們驚喜！動手做、解難題，是面對未來的最強底氣。」", font=get_font(True, 24), fill=NAVY)
+
+    base.convert("RGB").save(os.path.join(OUT_DIR, "13-practical-assessment.png"), quality=95)
+    print("Slide 13 generated.")
+
+def gen_slide_14():
+    base = create_base_canvas()
+    draw = ImageDraw.Draw(base)
+    draw_header_nav(draw, "14", "科技是翅膀，不是猛獸：高老師的 3C 哲學", "不把 3C 當洪水猛獸・擁抱數位工具作為高年級自主學習的強大助力")
     
     # 2 Large Contrast Cards
     base = draw_card(base, [80, 260, 880, 880], bg_color=(254, 243, 238, 255), border_color=(232, 141, 103, 255), radius=22)
@@ -730,14 +828,14 @@ def gen_slide_13():
         d.text((1022, py2), text, font=get_font(True, 34), fill=TEXT_DARK)
         py2 += 98
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "13-digital-wings.png"), quality=95)
-    print("Slide 13 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "14-digital-wings.png"), quality=95)
+    print("Slide 14 generated.")
 
 # ----------------- SLIDE 13: 3C DISCIPLINE (NEW SPLIT) -----------------
-def gen_slide_14():
+def gen_slide_15():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "14", "親師步調一致：3C 數位健康與自律約定", "在家庭中建立健康的 3C 使用規範・陪伴孩子養成自我節制的好習慣")
+    draw_header_nav(draw, "15", "親師步調一致：3C 數位健康與自律約定", "在家庭中建立健康的 3C 使用規範・陪伴孩子養成自我節制的好習慣")
     
     cards = [
         ("明確約定使用時限", NAVY, "每天約定固定使用時間，時間一到自覺休息護眼。"),
@@ -754,14 +852,14 @@ def gen_slide_14():
         d.text((475, cy + 44), desc, font=get_font(False, 34), fill=TEXT_DARK)
         cy += 165
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "14-digital-discipline.png"), quality=95)
-    print("Slide 14 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "15-digital-discipline.png"), quality=95)
+    print("Slide 15 generated.")
 
 # ----------------- SLIDE 14: HEALTH 1 (NEW SPLIT) -----------------
-def gen_slide_15():
+def gen_slide_16():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "15", "【學務處衛教】校園健康：洗手與咳嗽禮節", "上呼吸道感染防護力從日常做起・少一點病毒傳播，多一點安心學習！")
+    draw_header_nav(draw, "16", "【學務處衛教】校園健康：洗手與咳嗽禮節", "上呼吸道感染防護力從日常做起・少一點病毒傳播，多一點安心學習！")
     
     # 2 Giant Cards
     # Left: 洗手
@@ -800,14 +898,14 @@ def gen_slide_15():
         d.text((1022, hy2), text, font=get_font(True, 34), fill=TEXT_DARK)
         hy2 += 98
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "15-health-hygiene.png"), quality=95)
-    print("Slide 15 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "16-health-hygiene.png"), quality=95)
+    print("Slide 16 generated.")
 
 # ----------------- SLIDE 15: HEALTH 2 (NEW SPLIT) -----------------
-def gen_slide_16():
+def gen_slide_17():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "16", "【學務處衛教】通風換氣與生病不上課", "上呼吸道感染防護力從日常做起・不舒服別硬撐，落實健康自主管理")
+    draw_header_nav(draw, "17", "【學務處衛教】通風換氣與生病不上課", "上呼吸道感染防護力從日常做起・不舒服別硬撐，落實健康自主管理")
     
     # 2 Giant Cards
     # Left: 通風
@@ -846,14 +944,14 @@ def gen_slide_16():
         d.text((1022, hy4), text, font=get_font(True, 34), fill=TEXT_DARK)
         hy4 += 98
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "16-health-safety.png"), quality=95)
-    print("Slide 16 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "17-health-safety.png"), quality=95)
+    print("Slide 17 generated.")
 
 # ----------------- SLIDE 16: ATTENDANCE RULES (NEW SPLIT) -----------------
-def gen_slide_17():
+def gen_slide_18():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "17", "【學務處宣導】學生請假方式與通報管道", "明確掌握學生差勤行蹤・落實校園安全第一道防線")
+    draw_header_nav(draw, "18", "【學務處宣導】學生請假方式與通報管道", "明確掌握學生差勤行蹤・落實校園安全第一道防線")
     
     cards = [
         ("當日上午 8:30 前完成通報", NAVY, "孩子若因病或事故不克到校，請家長務必於當日 8:30 前告知。"),
@@ -871,14 +969,14 @@ def gen_slide_17():
         d.text((510, cy + 40), desc, font=get_font(False, 32), fill=TEXT_DARK)
         cy += 138
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "17-attendance-rules.png"), quality=95)
-    print("Slide 17 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "18-attendance-rules.png"), quality=95)
+    print("Slide 18 generated.")
 
 # ----------------- SLIDE 17: ATTENDANCE SECURITY (NEW SPLIT) -----------------
-def gen_slide_18():
+def gen_slide_19():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "18", "【學務處宣導】審核層級與外出安全管制", "嚴謹校園安全管理制度・共同守護每位學童的平安")
+    draw_header_nav(draw, "19", "【學務處宣導】審核層級與外出安全管制", "嚴謹校園安全管理制度・共同守護每位學童的平安")
     
     # 2 Big Cards
     # Left: 審核層級
@@ -919,14 +1017,14 @@ def gen_slide_18():
         d.text((1018, sy2 + 46), desc, font=get_font(False, 30), fill=TEXT_DARK)
         sy2 += 102
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "18-attendance-security.png"), quality=95)
-    print("Slide 18 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "19-attendance-security.png"), quality=95)
+    print("Slide 19 generated.")
 
 # ----------------- SLIDE 18: GRADUATION -----------------
-def gen_slide_19():
+def gen_slide_20():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "19", "倒數計時的小學時光：六年級專屬盛事", "小學最後一年，攜手打造孩子一輩子珍藏的青春印記")
+    draw_header_nav(draw, "20", "倒數計時的小學時光：六年級專屬盛事", "小學最後一年，攜手打造孩子一輩子珍藏的青春印記")
     
     # 2 Big Cards: 畢業旅行 & 畢業紀念冊
     # Left Card: 畢業旅行啟程
@@ -975,16 +1073,16 @@ def gen_slide_19():
     bw, bh = draw_badge(d, "高老師的心願", 120, 882, bg_color=NAVY, font_size=26)
     d.text((120 + bw + 30, 886), "讓每一位 601 的孩子，都能帶著被滿滿愛意包裹的溫暖記憶畢業！", font=get_font(True, 32), fill=NAVY)
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "19-graduation.png"), quality=95)
-    print("Slide 19 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "20-graduation.png"), quality=95)
+    print("Slide 20 generated.")
 
 
 # ----------------- SLIDE 20: ELECTION (NEW SPLIT) -----------------
 # ----------------- SLIDE 19: GRADUATION ALBUM QUOTATION (NEW) -----------------
-def gen_slide_20():
+def gen_slide_21():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "20", "【畢業專案費用公開】畢業紀念冊規格、攝影與費用預估", "天藝數位影像工坊專案報價・直式 A4 蝴蝶書硬殼精裝・每生專屬頁・含升學證件照・透明把關")
+    draw_header_nav(draw, "21", "【畢業專案費用公開】畢業紀念冊規格、攝影與費用預估", "天藝數位影像工坊專案報價・直式 A4 蝴蝶書硬殼精裝・每生專屬頁・含升學證件照・透明把關")
 
     cards = [
         ("【費用預估】每本 870 元", ORANGE, "價格公開透明", [
@@ -1034,14 +1132,14 @@ def gen_slide_20():
     bw, bh = draw_badge(d, "導師把關原則", 120, 895, bg_color=GOLD, font_size=26)
     d.text((120 + bw + 25, 903), "「價格公開、品質把關；省下家長另外拍證件照的花費，更為孩子定格最燦爛的童年！」", font=get_font(True, 30), fill=NAVY)
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "20-album-quotation.png"), quality=95)
-    print("Slide 20 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "21-album-quotation.png"), quality=95)
+    print("Slide 21 generated.")
 
 # ----------------- SLIDE 20: ELECTION -----------------
-def gen_slide_21():
+def gen_slide_22():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "21", "班級自治：推選 601 班親會「會長」與「總務」", "正因有畢業旅行與畢業紀念冊等重大專案，更需要家長幹部共同把關！")
+    draw_header_nav(draw, "22", "班級自治：推選 601 班親會「會長」與「總務」", "正因有畢業旅行與畢業紀念冊等重大專案，更需要家長幹部共同把關！")
     
     # 2 Big Cards: 會長 & 總務
     # Left: 會長
@@ -1082,14 +1180,14 @@ def gen_slide_21():
         d.text((1022, cy2), c, font=get_font(True, 32), fill=TEXT_DARK)
         cy2 += 78
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "21-election.png"), quality=95)
-    print("Slide 21 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "22-election.png"), quality=95)
+    print("Slide 22 generated.")
 
 # ----------------- SLIDE 21: FINANCE TRANSPARENCY (NEW SPLIT) -----------------
-def gen_slide_22():
+def gen_slide_23():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "22", "財務公開透明：高老師與班親會的三大承諾", "讓每筆經費用在刀口・公開監督・老師專心教學、家長百分之百安心！")
+    draw_header_nav(draw, "23", "財務公開透明：高老師與班親會的三大承諾", "讓每筆經費用在刀口・公開監督・老師專心教學、家長百分之百安心！")
     
     cards = [
         ("承諾一：專款專用", NAVY, "班級與畢業所有經費獨立建帳保管，絕不任意挪作他用。"),
@@ -1105,14 +1203,14 @@ def gen_slide_22():
         d.text((140, cy + 105), desc, font=get_font(False, 36), fill=TEXT_DARK)
         cy += 220
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "22-finance-pledge.png"), quality=95)
-    print("Slide 22 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "23-finance-pledge.png"), quality=95)
+    print("Slide 23 generated.")
 
 # ----------------- SLIDE 22: COMMITTEE -----------------
-def gen_slide_23():
+def gen_slide_24():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "23", "誠摯致謝：家長委員會委員", "感謝家長委員熱心承擔重任・成為六年一班與全校孩子最堅實的溫暖後盾")
+    draw_header_nav(draw, "24", "誠摯致謝：家長委員會委員", "感謝家長委員熱心承擔重任・成為六年一班與全校孩子最堅實的溫暖後盾")
     
     base = draw_card(base, [120, 260, SLIDE_W - 120, 900], bg_color=(255, 255, 255, 252), border_color=GOLD, radius=24)
     d = ImageDraw.Draw(base)
@@ -1135,14 +1233,14 @@ def gen_slide_23():
         d.text((400, iy), desc, font=get_font(False, 32), fill=TEXT_DARK)
         iy += 82
         
-    base.convert("RGB").save(os.path.join(OUT_DIR, "23-committee.png"), quality=95)
-    print("Slide 23 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "24-committee.png"), quality=95)
+    print("Slide 24 generated.")
 
 # ----------------- SLIDE 23: VOLUNTEER RECRUITMENT -----------------
-def gen_slide_24():
+def gen_slide_25():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "24", "熱忱招募：115學年度愛心志工隊", "因為有您，孩子的安全更有保障；因為有您，孩子的笑容更加燦爛")
+    draw_header_nav(draw, "25", "熱忱招募：115學年度愛心志工隊", "因為有您，孩子的安全更有保障；因為有您，孩子的笑容更加燦爛")
     
     # Left Card: 交通組 (Orange)
     base = draw_card(base, [80, 250, 930, 775], bg_color=(254, 243, 238, 255), border_color=(232, 141, 103, 255), radius=22)
@@ -1195,14 +1293,14 @@ def gen_slide_24():
     d.text((120, 880), "1. 紙本回條：填寫通知單回條並勾選組別與方便時段，交由孩子帶回學校。", font=get_font(True, 26), fill=TEXT_DARK)
     d.text((120, 915), "2. 導師登記：亦可直接向高志賢老師口頭登記，或於 LINE 班級官方訊息報名！", font=get_font(True, 26), fill=NAVY)
     
-    base.convert("RGB").save(os.path.join(OUT_DIR, "24-volunteer.png"), quality=95)
-    print("Slide 24 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "25-volunteer.png"), quality=95)
+    print("Slide 25 generated.")
 
 # ----------------- SLIDE 24: COMMUNICATION -----------------
-def gen_slide_25():
+def gen_slide_26():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "25", "親師即時連線：攜手同行做孩子的橋樑", "孩子有任何狀況請第一時間與導師聯繫・親師互信合作比事後焦慮更有效")
+    draw_header_nav(draw, "26", "親師即時連線：攜手同行做孩子的橋樑", "孩子有任何狀況請第一時間與導師聯繫・親師互信合作比事後焦慮更有效")
     
     # Left Card: LINE
     base = draw_card(base, [80, 260, 880, 770], bg_color=(240, 249, 244, 255), border_color=(88, 164, 126, 255), radius=22)
@@ -1252,14 +1350,14 @@ def gen_slide_25():
     draw_badge(d, "高老師的溝通原則", 120, 825, bg_color=NAVY, font_size=22)
     d.text((120, 880), "「孩子有任何狀況，請第一時間與我聯繫。我們坦誠對話、互相合作，讓小問題在第一時間得到最好照顧。」", font=get_font(True, 28), fill=TEXT_DARK)
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "25-communication.png"), quality=95)
-    print("Slide 25 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "26-communication.png"), quality=95)
+    print("Slide 26 generated.")
 
 # ----------------- SLIDE 25: MESSAGE TO PARENTS -----------------
-def gen_slide_26():
+def gen_slide_27():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "26", "給家長的一封信：並肩走一段平穩堅定的路", "六年級是童年的尾聲，也是青春的序曲・讓我們給予孩子展翅飛翔的底氣")
+    draw_header_nav(draw, "27", "給家長的一封信：並肩走一段平穩堅定的路", "六年級是童年的尾聲，也是青春的序曲・讓我們給予孩子展翅飛翔的底氣")
     
     base = draw_card(base, [120, 260, SLIDE_W - 120, 920], bg_color=(255, 255, 255, 252), border_color=(232, 141, 103, 255), radius=24)
     d = ImageDraw.Draw(base)
@@ -1296,14 +1394,14 @@ def gen_slide_26():
             
     d.text((SLIDE_W - 620, 835), "六年一班導師 高志賢 敬上", font=get_font(True, 34), fill=NAVY)
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "26-message.png"), quality=95)
-    print("Slide 26 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "27-message.png"), quality=95)
+    print("Slide 27 generated.")
 
 # ----------------- SLIDE 26: QA & THANK YOU -----------------
-def gen_slide_27():
+def gen_slide_28():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "27", "感謝聆聽．交流時間（Q&A）", "臺中市沙鹿區鹿陽國民小學 六年一班・讓我們一起成為孩子最好的神隊友！")
+    draw_header_nav(draw, "28", "感謝聆聽．交流時間（Q&A）", "臺中市沙鹿區鹿陽國民小學 六年一班・讓我們一起成為孩子最好的神隊友！")
     
     # Left Card
     base = draw_card(base, [80, 260, 920, 880], bg_color=(255, 255, 255, 248), border_color=(44, 94, 138, 255), radius=22)
@@ -1345,14 +1443,14 @@ def gen_slide_27():
     d.text((1065, 735), "學校總機（差勤請假專線）：", font=get_font(True, 36), fill=NAVY)
     d.text((1065, 784), "04-26567968（分機 720 / 724）", font=get_font(False, 32), fill=TEXT_DARK)
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "27-qa.png"), quality=95)
-    print("Slide 27 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "28-qa.png"), quality=95)
+    print("Slide 28 generated.")
 
 # ----------------- SLIDE 28: MEETING CHECKLIST / REMINDER -----------------
-def gen_slide_28():
+def gen_slide_29():
     base = create_base_canvas()
     draw = ImageDraw.Draw(base)
-    draw_header_nav(draw, "28", "現場重要提醒：今日親師會三大必辦事項", "感謝各位家長熱情參與・離席前請協助確認完成以下三大核心要事")
+    draw_header_nav(draw, "29", "現場重要提醒：今日親師會三大必辦事項", "感謝各位家長熱情參與・離席前請協助確認完成以下三大核心要事")
 
     # 4 Cards Layout
     # Card 1: 簽到 (x: 70 to 485)
@@ -1432,14 +1530,14 @@ def gen_slide_28():
     draw_badge(d, "導師感謝與叮嚀", 110, 860, bg_color=GOLD, font_size=22)
     d.text((110, 908), "「再次誠摯感謝各位爸爸媽媽的蒞臨與支持！六年一班有您真好，夜深天涼，返家請注意安全！」", font=get_font(True, 28), fill=NAVY)
 
-    base.convert("RGB").save(os.path.join(OUT_DIR, "28-reminder.png"), quality=95)
-    print("Slide 28 generated.")
+    base.convert("RGB").save(os.path.join(OUT_DIR, "29-reminder.png"), quality=95)
+    print("Slide 29 generated.")
 
 def main():
     print(f"Generating expanded {TOTAL_SLIDES} high-legibility slides (large font edition)...")
-    for i in range(1, 29):
+    for i in range(1, 30):
         globals()[f"gen_slide_{i:02d}"]()
-    print("All 28 slides generated successfully.")
+    print("All 29 slides generated successfully.")
     
     # Auto-sync to website assets & root assets
     import shutil

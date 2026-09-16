@@ -63,83 +63,88 @@ document.addEventListener("DOMContentLoaded", () => {
       note: "601 成績評量重點：兩次定期考日程（期中11/5-6、期末1/12-13）；定期考 50% ＋ 平時 50% 破除一試定江山；英語重視聽力口說、藝能彈性適性多元評量。"
     },
     {
-      file: "assets/slides/13-digital-wings.png",
-      title: "Page 13｜3C 學習哲學：科技是翅膀而非猛獸",
+      file: "assets/slides/13-practical-assessment.png",
+      title: "Page 13｜跳脫死背，學以致用：六年級跨領域實作評量",
+      note: "實作評量核心：培育動手實踐、主動解題、思辨查核能力。全班本年度進行一次實作評量，含 AI 解題、冰棒棍桁架橋、名畫社會顯影三大跨域任務與三軌評量機制。"
+    },
+    {
+      file: "assets/slides/14-digital-wings.png",
+      title: "Page 14｜3C 學習哲學：科技是翅膀而非猛獸",
       note: "高老師理念：3C 是數位時代的關鍵翅膀！引導孩子善用科技於查證百科、解題輔助與生活探索，正向賦能。"
     },
     {
-      file: "assets/slides/14-digital-discipline.png",
-      title: "Page 14｜數位自律公約：親師一致的健康使用準則",
+      file: "assets/slides/15-digital-discipline.png",
+      title: "Page 15｜數位自律公約：親師一致的健康使用準則",
       note: "親師一致約定：屏幕使用每日時限約定、睡前 1 小時手機不進臥室、專注學習時不切換娛樂視窗，建立健康數位習慣。"
     },
     {
-      file: "assets/slides/15-health-hygiene.png",
-      title: "Page 15｜校園衛教守則：正確洗手與呼吸道禮節",
+      file: "assets/slides/16-health-hygiene.png",
+      title: "Page 16｜校園衛教守則：正確洗手與呼吸道禮節",
       note: "校園衛生防護：洗手七字訣（內外夾弓大立腕）搓洗 40 秒、咳嗽噴嚏手肘遮口鼻，共同守護校園衛生。"
     },
     {
-      file: "assets/slides/16-health-safety.png",
-      title: "Page 16｜校園健康守護：環境通風與發燒休養",
+      file: "assets/slides/17-health-safety.png",
+      title: "Page 17｜校園健康守護：環境通風與發燒休養",
       note: "健康中心叮嚀：對角開窗維持通風；發燒（≥37.5℃）請假在家休養，退燒滿 24 小時再返校，不舒服別硬撐。"
     },
     {
-      file: "assets/slides/17-attendance-rules.png",
-      title: "Page 17｜請假規範指南：8:30 前通報管道與流程",
+      file: "assets/slides/18-attendance-rules.png",
+      title: "Page 18｜請假規範指南：8:30 前通報管道與流程",
       note: "差勤通報準則：每日 8:30 前完成請假通報（LINE 或學校總機 04-26567968 轉 720/724），2日內導師核准。"
     },
     {
-      file: "assets/slides/18-attendance-security.png",
-      title: "Page 18｜校園安全管理：外出嚴格審核與中輟通報",
+      file: "assets/slides/19-attendance-security.png",
+      title: "Page 19｜校園安全管理：外出嚴格審核與中輟通報",
       note: "安全出入把關：臨時外出需由家長至警衛室換證接回；未請假達 3 日依法通報中輟，親師聯手守護平安。"
     },
     {
-      file: "assets/slides/19-graduation.png",
-      title: "Page 19｜六年級專屬盛事：畢旅與畢業紀念冊",
+      file: "assets/slides/20-graduation.png",
+      title: "Page 20｜六年級專屬盛事：畢旅與畢業紀念冊",
       note: "小學里程碑盛事：兩天一夜畢業旅行鍛鍊獨立自主、畢業紀念冊典藏童年最美笑顏。"
     },
     {
-      file: "assets/slides/20-album-quotation.png",
-      title: "Page 20｜【畢業專案費用公開】畢業紀念冊規格、攝影與費用預估",
+      file: "assets/slides/21-album-quotation.png",
+      title: "Page 21｜【畢業專案費用公開】畢業紀念冊規格、攝影與費用預估",
       note: "天藝數位影像報價公開：整本購買每本 870 元（28位專屬頁＋蝴蝶裝完全攤平＋2吋證件照8張與修片QR檔）；僅拍照不購冊每人 250 元工本費。費用透明、滿意再付款。"
     },
     {
-      file: "assets/slides/21-election.png",
-      title: "Page 21｜班級自治與推選：班親會長與總務幹部",
+      file: "assets/slides/22-election.png",
+      title: "Page 22｜班級自治與推選：班親會長與總務幹部",
       note: "推選班親會長（親師溝通代表）與總務幹部（專案經費保管與記帳），熱情邀請熱心家長一同為班級服務！"
     },
     {
-      file: "assets/slides/22-finance-pledge.png",
-      title: "Page 22｜班級財務透明：高老師的三大透明承諾",
+      file: "assets/slides/23-finance-pledge.png",
+      title: "Page 23｜班級財務透明：高老師的三大透明承諾",
       note: "高老師承諾三大保證：① 專款專用、② 帳目公開透明、③ 總務與導師/會長雙人覆核，每一筆花費清清楚楚。"
     },
     {
-      file: "assets/slides/23-committee.png",
-      title: "Page 23｜誠摯致謝：114學年度本班家長委員會委員",
+      file: "assets/slides/24-committee.png",
+      title: "Page 24｜誠摯致謝：114學年度本班家長委員會委員",
       note: "公開感謝本班家長委員無私承擔重任，搭建班級與學校的堅實橋樑，為六年一班孩子爭取最優質資源。"
     },
     {
-      file: "assets/slides/24-volunteer.png",
-      title: "Page 24｜熱忱招募：115學年度愛心志工隊（交通組／圖書組）",
+      file: "assets/slides/25-volunteer.png",
+      title: "Page 25｜熱忱招募：115學年度愛心志工隊（交通組／圖書組）",
       note: "學校志工隊招募：「因為有您，孩子的安全更有保障；因為有您，孩子的笑容更加燦爛。」包含交通安全維護與圖書室推廣，歡迎家長填寫回條或向導師報名！"
     },
     {
-      file: "assets/slides/25-communication.png",
-      title: "Page 25｜親師即時連線：LINE 常態溝通與緊急專線",
+      file: "assets/slides/26-communication.png",
+      title: "Page 26｜親師即時連線：LINE 常態溝通與緊急專線",
       note: "平時日常聯繫請多利用 LINE 留言；遇突發急症或緊急事故，請直接撥打導師專線：0963-159-896。"
     },
     {
-      file: "assets/slides/26-message.png",
-      title: "Page 26｜給家長的一封信：並肩走一段平穩堅定的路",
+      file: "assets/slides/27-message.png",
+      title: "Page 27｜給家長的一封信：並肩走一段平穩堅定的路",
       note: "「我們不替孩子走完人生的路，但在他跌倒時，陪伴他勇敢站起來。」感謝家長六年來的悉心灌溉，未來一年親師繼續並肩做神隊友，給孩子展翅的底氣。"
     },
     {
-      file: "assets/slides/27-qa.png",
-      title: "Page 27｜感謝聆聽與交流時間（Q&A）",
+      file: "assets/slides/28-qa.png",
+      title: "Page 28｜感謝聆聽與交流時間（Q&A）",
       note: "現場自由提問、班親幹部推選與意見交流。祝各位闔家平安，感謝各位家長對六年一班的溫暖支持！"
     },
     {
-      file: "assets/slides/28-reminder.png",
-      title: "Page 28｜現場重要提醒：今日親師會三大必辦事項",
+      file: "assets/slides/29-reminder.png",
+      title: "Page 29｜現場重要提醒：今日親師會三大必辦事項",
       note: "離席前三大叮嚀：① 完成出席簽到表簽名、② 推選確認 601 班親會長與總務幹部、③ 有意願擔任愛心志工的家長登記回條。感謝家長！"
     }
   ];
